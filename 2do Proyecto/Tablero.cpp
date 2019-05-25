@@ -10,7 +10,7 @@ Tablero::Tablero()
 	{
 		for (int y = 0; y < TAMTABLERO; y++)
 		{
-			tablero[i][y] = "   ";
+			tablero[i][y] = NULL;
 		}
 	}
 
@@ -18,7 +18,7 @@ Tablero::Tablero()
 		if (!esPar(i+1)) {
 			for (int y = 0; y < TAMTABLERO; y++) {
 				if (esPar(y)) {
-					tablero[i][y] = " O ";
+					tablero[i][y] = new Ficha(i, y, true);
 				}
 
 			}
@@ -26,7 +26,7 @@ Tablero::Tablero()
 		else {
 			for (int y = 0; y < TAMTABLERO; y++) {
 				if (!esPar(y)) {
-					tablero[i][y] = " O ";
+					tablero[i][y] = new Ficha(i, y, true);
 				}
 			}
 		}
@@ -36,7 +36,7 @@ Tablero::Tablero()
 		if (!esPar(i+1)) {
 			for (int y = 0; y < TAMTABLERO; y++) {
 				if (esPar(y)) {
-					tablero[i][y] = " X ";
+					tablero[i][y] = new Ficha(i, y, false);
 				}
 
 			}
@@ -44,7 +44,7 @@ Tablero::Tablero()
 		else {
 			for (int y = 0; y < TAMTABLERO; y++) {
 				if (!esPar(y)) {
-					tablero[i][y] = " X ";
+					tablero[i][y] = new Ficha(i, y, false);
 				}
 			}
 		}
@@ -90,7 +90,7 @@ bool Tablero::ingresarJugada(int x, int y)
 		x = 8;
 	}
 	if (x > 0 && y > 0 && y<=8&& x<=8) {
-		tablero[x - 1][y - 1] = " X ";
+		tablero[x - 1][y - 1] = new Ficha (x-1, y-1, false);
 		return true;
 	}
 	else
@@ -108,8 +108,13 @@ string Tablero::toString()
 			p << tam;
 			for (int y = 0; y < TAMTABLERO; y++)
 			{
-
-				p << "[" << tablero[i][y] << "]";
+				if (tablero[i][y] == NULL) {
+					p << "[   ]";
+				}
+				else {
+					p << "[" << tablero[i][y]->imprimeFicha() << "]";
+				}
+				
 
 			}
 			p << endl;

@@ -4,10 +4,11 @@
 #include <string>
 #include <sstream>
 #include <iostream>
+#include "Ficha.h"
 using namespace std;
 class Tablero
 {
-	string tablero[TAMTABLERO][TAMTABLERO];
+	Ficha* tablero[TAMTABLERO][TAMTABLERO];
 	Tablero();
 	static Tablero * instancia;
 public:
