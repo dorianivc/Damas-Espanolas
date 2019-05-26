@@ -15,18 +15,18 @@ Tablero::Tablero()
 	}
 
 	for (int i = 0; i < 3; i++) {
-		if (!esPar(i+1)) {
+		if (esPar(i+1)) {
 			for (int y = 0; y < TAMTABLERO; y++) {
-				if (esPar(y)) {
-					tablero[i][y] = new Ficha(i, y, true);
+				if (!esPar(y)) {
+					tablero[i][y] = new Ficha( true);
 				}
 
 			}
-		}
-		else {
+		}	
+		if(!esPar(i+1)) {
 			for (int y = 0; y < TAMTABLERO; y++) {
-				if (!esPar(y)) {
-					tablero[i][y] = new Ficha(i, y, true);
+				if (esPar(y)) {
+					tablero[i][y] = new Ficha( true);
 				}
 			}
 		}
@@ -36,15 +36,15 @@ Tablero::Tablero()
 		if (!esPar(i+1)) {
 			for (int y = 0; y < TAMTABLERO; y++) {
 				if (esPar(y)) {
-					tablero[i][y] = new Ficha(i, y, false);
+					tablero[i][y] = new Ficha( false);
 				}
 
 			}
 		}
-		else {
+		if(esPar(i+1)) {
 			for (int y = 0; y < TAMTABLERO; y++) {
 				if (!esPar(y)) {
-					tablero[i][y] = new Ficha(i, y, false);
+					tablero[i][y] = new Ficha( false);
 				}
 			}
 		}
@@ -62,7 +62,7 @@ Tablero * Tablero::getInstancia()
 	return instancia;
 }
 
-bool Tablero::ingresarJugada(int x, int y)
+bool Tablero::ingresarJugadaBlancas(int x, int y)
 {
 	switch (x) {
 	case 8:
@@ -90,11 +90,67 @@ bool Tablero::ingresarJugada(int x, int y)
 		x = 8;
 	}
 	if (x > 0 && y > 0 && y<=8&& x<=8) {
-		tablero[x - 1][y - 1] = new Ficha (x-1, y-1, false);
+		tablero[x - 1][y - 1] = new Ficha (false);
 		return true;
 	}
 	else
 		return false;
+}
+
+bool Tablero::ingresarJugadaNegras(int x, int y)
+{
+	switch (x) {
+	case 8:
+		x = 1;
+		break;
+	case 7:
+		x = 2;
+		break;
+	case 6:
+		x = 3;
+		break;
+	case 5:
+		x = 4;
+		break;
+	case 4:
+		x = 5;
+		break;
+	case 3:
+		x = 6;
+		break;
+	case 2:
+		x = 7;
+		break;
+	case 1:
+		x = 8;
+	}
+	if (x > 0 && y > 0 && y <= 8 && x <= 8) {
+		tablero[x - 1][y - 1] = new Ficha(true);
+		return true;
+	}
+	else
+		return false;
+}
+
+Ficha * Tablero::getFichaDelTablero(int x, int y)
+{
+	return tablero[x][y];
+}
+
+void Tablero::actualizar()
+{
+	for (int i = 0; i < TAMTABLERO; i++) {
+		if (tablero[0][i] != NULL) {
+			if (tablero[0][i]->esFichaNegra() == false) {
+				tablero[0][i]->coronar();
+			}
+		}
+		if (tablero[7][i]!=NULL){
+			if (tablero[7][i]->esFichaNegra() == true) {
+				tablero[7][i]->coronar();
+			}
+		}
+	}
 }
 
 string Tablero::toString()
@@ -117,7 +173,7 @@ string Tablero::toString()
 				
 
 			}
-			p << endl;
+			p << i<< endl;
 			tam--;
 		}
 

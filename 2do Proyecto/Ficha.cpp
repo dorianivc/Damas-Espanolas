@@ -32,6 +32,18 @@ string Ficha::imprimeFicha()
 	return salida;
 }
 
+bool Ficha::esFichaNegra()
+{
+	return esNegra;
+}
+
+bool Ficha::getesCorona()
+{
+	return esCorona;
+}
+
+
+
 void Ficha::coronar()
 {
 	esCorona = true;

@@ -9,6 +9,8 @@ public:
 	Ficha(bool);
 	Ficha(const Ficha&);
 	string imprimeFicha();
+	bool esFichaNegra();
+	bool getesCorona();
 	void coronar();
 	~Ficha();
 };

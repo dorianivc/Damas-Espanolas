@@ -13,7 +13,10 @@ class Tablero
 	static Tablero * instancia;
 public:
 	static Tablero* getInstancia();
-	bool ingresarJugada(int , int );
+	bool ingresarJugadaBlancas(int , int );//falta impedir movimientos ambiguios
+	bool ingresarJugadaNegras(int, int);//falta impedir movimientos ambiguios
+	Ficha* getFichaDelTablero(int, int);
+	void actualizar();//refresca las fichas para coronarlas si llegaron al espacio correspondiente
 	string toString();
 	~Tablero();
 	bool esPar(int);
