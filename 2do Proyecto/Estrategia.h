@@ -10,6 +10,7 @@ class Estrategia
 public:
 
 	virtual vector<int> obtenerEstrategia(Tablero*) = 0;
+
 };
 
 #endif // !ESTRATEGIA

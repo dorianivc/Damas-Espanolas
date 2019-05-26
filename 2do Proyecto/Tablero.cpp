@@ -190,6 +190,13 @@ string Tablero::toString()
 
 Tablero::~Tablero()
 {
+	for (int i = 0; i < 8; i++) {
+		for (int y = 0; y < 8; y++) {
+			if (tablero[i][y] != NULL)
+				delete  tablero[i][y];
+		}
+}
+
 	instancia=NULL;
 }
 

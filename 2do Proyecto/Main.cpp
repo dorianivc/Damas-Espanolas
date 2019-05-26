@@ -1,6 +1,7 @@
 #include "Tablero.h"
 #include "EstrategiaAleatoria.h"
 #include  "Estrategia.h"
+#include <Windows.h>
 using namespace std;
 
 int main() {
@@ -17,7 +18,7 @@ int main() {
 		cout <<"Poscicion " << i<<": "<< jugadas[i] << endl;
 	}*/
 	int var = 0;
-	for (int i = -1; i < jugadas[0]-1; i++) {
+	/*for (int i = -1; i < jugadas[0]-1; i++) {
 		var++;
 		var++;
 		cout <<"Jugada Fila: "<< jugadas[i + var]+1 << endl;
@@ -31,12 +32,31 @@ int main() {
 		}
 		cout << "Fin del ciclo: " << i+2 << endl;
 		cout << "/---------------------------------------------------/" << endl << endl;
+		*/
 
+
+	cout << "Probando Metodo numeros del 1 al 10" << endl; 
+	for (int i = 0; i < 10; i++) {
+		Sleep(1);
+		cout << "# " << i+1 << endl;
+		vector<int> prub = est->obtenerEstrategia(tab);
+		cout << "Ficha a mover X: " << prub[0] << " Y: " << prub[1] << endl;
+		cout << "Posicion a mover X: " << prub[2] << " Y: " << prub[3] << endl;
+		int x1 = prub[0], x2 = prub[1], x = prub[2], y = prub[3];
+		if ((x == x1 + 1 && y == x2 + 1) || (x == x1 + 1 && y == x2 - 1) || (x == x1 - 1 && y == x2 + 1) || (x == x1 - 1 && y == x2 - 1) || (x == x1 + 2 && y == x2 - 2) || (x == x1 + 2 && y == x2 + 2) || (x == x1 - 2 && y == x2 + 2) || (x == x1 - 2 && y == x2 - 2)) {
+			cout << "Movimiento Valido" << endl;
+		}
+		else {
+			cout << "Movimiento Invalido" << endl;
+		}
 	}
-
+	
+	
+	delete est;
+	delete tab;
 	
 	cin.get();
-	delete tab;
+	
 	return 0;
 
 }
