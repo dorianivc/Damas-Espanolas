@@ -173,7 +173,7 @@ string Tablero::toString()
 				
 
 			}
-			p << i<< endl;
+			p << endl;
 			tam--;
 		}
 

@@ -32,11 +32,13 @@ vector<int> EstrategiaAleatoria::calcularJugadas(Tablero* tab, int x , int y)
 				}
 				if (y < 6) {
 					if (tab->getFichaDelTablero(x + 2, y + 2) == NULL ) {//2 PASO DIAGONAL DERECHA
-						posibilidades++;
-						x3Aux = x + 2;
-						y3Aux = y + 2;
-						if (tab->getFichaDelTablero(x + 1, y + 1) != NULL ) {
-							comestible3 = 1;
+						if (tab->getFichaDelTablero(x + 1, y + 1) == NULL || tab->getFichaDelTablero(x + 1, y + 1)->esFichaNegra() == false) {
+							posibilidades++;
+							x3Aux = x + 2;
+							y3Aux = y + 2;
+							if (tab->getFichaDelTablero(x + 1, y + 1) != NULL && tab->getFichaDelTablero(x + 1, y + 1)->esFichaNegra() == false) {
+								comestible3 = 1;
+							}
 						}
 					}
 				}
@@ -51,11 +53,13 @@ vector<int> EstrategiaAleatoria::calcularJugadas(Tablero* tab, int x , int y)
 				
 				if (y > 1) {
 					if (tab->getFichaDelTablero(x + 2, y - 2) == NULL) {//2 PASO  DIAGONAL IZQUIERDA
-						posibilidades++;
-						x4Aux = x + 2;
-						y4Aux = y - 2;
-						if (tab->getFichaDelTablero(x + 1, y - 1) != NULL ){
-							comestible4=1;
+						if (tab->getFichaDelTablero(x + 1, y - 1) == NULL || tab->getFichaDelTablero(x + 1, y - 1)->esFichaNegra() == false) {
+							posibilidades++;
+							x4Aux = x + 2;
+							y4Aux = y - 2;
+							if (tab->getFichaDelTablero(x + 1, y - 1) != NULL&& tab->getFichaDelTablero(x + 1, y - 1)->esFichaNegra() == false) {
+								comestible4 = 1;
+							}
 						}
 					}
 				}
@@ -85,21 +89,25 @@ vector<int> EstrategiaAleatoria::calcularJugadas(Tablero* tab, int x , int y)
 			if (x > 1) {
 				if (y > 1) {
 					if (tab->getFichaDelTablero(x - 2, y - 2) == NULL) {//2 ATRASO DIAGONAL IZQUIERDA
-						posibilidades++;
-						x6Aux = x - 1;
-						x6Aux = y - 2;
-						if (tab->getFichaDelTablero(x - 1, y - 1) != NULL) {
-							comestible6 = 1;
+						if (tab->getFichaDelTablero(x - 1, y - 1) == NULL || tab->getFichaDelTablero(x - 1, y - 1)->esFichaNegra() == false) {
+							posibilidades++;
+							x6Aux = x - 2;
+							x6Aux = y - 2;
+							if (tab->getFichaDelTablero(x - 1, y - 1) != NULL&& tab->getFichaDelTablero(x - 1, y - 1)->esFichaNegra() == false) {
+								comestible6 = 1;
+							}
 						}
 					}
 				}
 				if (y < 6) {
 					if (tab->getFichaDelTablero(x - 2, y + 2) == NULL) {// 2 ATRASO DIAGONAL DERECHA
-						posibilidades++;
-						x8Aux = x - 1;
-						y8Aux = y + 2;
-						if (tab->getFichaDelTablero(x - 1, y + 2) != NULL) {
-							comestible8 = 1;
+						if (tab->getFichaDelTablero(x - 1, y + 1) == NULL || tab->getFichaDelTablero(x - 1, y + 1)->esFichaNegra() == false) {
+							posibilidades++;
+							x8Aux = x - 2;
+							y8Aux = y + 2;
+							if (tab->getFichaDelTablero(x - 1, y + 1) != NULL &&  tab->getFichaDelTablero(x - 1, y + 1)->esFichaNegra() == false) {
+								comestible8 = 1;
+							}
 						}
 
 					}
@@ -110,31 +118,45 @@ vector<int> EstrategiaAleatoria::calcularJugadas(Tablero* tab, int x , int y)
 			
 		}
 		
-		estrategia.push_back( posibilidades);
-		estrategia.push_back(x1Aux);
-		estrategia.push_back(y1Aux);
-		estrategia.push_back(comestible1);
-		estrategia.push_back(x2Aux);
-		estrategia.push_back(y2Aux);
-		estrategia.push_back(comestible2);
-		estrategia.push_back(x3Aux);
-		estrategia.push_back(y3Aux);
-		estrategia.push_back(comestible3);
-		estrategia.push_back(x4Aux);
-		estrategia.push_back(y4Aux);
-		estrategia.push_back(comestible4);
-		estrategia.push_back(x5Aux);
-		estrategia.push_back(y5Aux);
-		estrategia.push_back(comestible5);
-		estrategia.push_back( x6Aux);
-		estrategia.push_back(y6Aux);
-		estrategia.push_back(comestible6);
-		estrategia.push_back(x7Aux);
-		estrategia.push_back(y7Aux);
-		estrategia.push_back(comestible7);
-		estrategia.push_back(x8Aux);
-		estrategia.push_back(y8Aux);
-		estrategia.push_back(comestible8);
+		estrategia.push_back(posibilidades);
+		if (x1Aux != 99) {
+			estrategia.push_back(x1Aux);
+			estrategia.push_back(y1Aux);
+			estrategia.push_back(comestible1);
+		}
+		if (x2Aux != 99) {
+			estrategia.push_back(x2Aux);
+			estrategia.push_back(y2Aux);
+			estrategia.push_back(comestible2);
+		}
+		if (x2Aux != 99) {
+			estrategia.push_back(x3Aux);
+			estrategia.push_back(y3Aux);
+			estrategia.push_back(comestible3);
+		}
+		if (x4Aux != 99) {
+			estrategia.push_back(x4Aux);
+			estrategia.push_back(y4Aux);
+			estrategia.push_back(comestible4);
+		}if (x5Aux != 99) {
+			estrategia.push_back(x5Aux);
+			estrategia.push_back(y5Aux);
+			estrategia.push_back(comestible5);
+		}
+		if (x6Aux != 99) {
+			estrategia.push_back(x6Aux);
+			estrategia.push_back(y6Aux);
+			estrategia.push_back(comestible6);
+		}if (x7Aux != 99) {
+			estrategia.push_back(x7Aux);
+			estrategia.push_back(y7Aux);
+			estrategia.push_back(comestible7);
+		}
+		if (x8Aux != 99) {
+			estrategia.push_back(x8Aux);
+			estrategia.push_back(y8Aux);
+			estrategia.push_back(comestible8);
+		}
 	}
 	return estrategia;
 }
