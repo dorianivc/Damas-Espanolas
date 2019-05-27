@@ -212,7 +212,7 @@ vector<int> EstrategiaAleatoria::calcularJugadas(Tablero* tab, int x , int y)
 			estrategia.push_back(y2Aux);
 			estrategia.push_back(comestible2);
 		}
-		if (x2Aux != 99) {
+		if (x3Aux != 99) {
 			estrategia.push_back(x3Aux);
 			estrategia.push_back(y3Aux);
 			estrategia.push_back(comestible3);
