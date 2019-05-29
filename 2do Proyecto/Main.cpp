@@ -2,8 +2,15 @@
 #include "EstrategiaAleatoria.h"
 #include  "Estrategia.h"
 #include <Windows.h>
+#include "Jugador.h"
 using namespace std;
-
+bool jugadaValida(int x1,int x2, int x, int y) {
+	if ((x == x1 + 1 && y == x2 + 1) || (x == x1 + 1 && y == x2 - 1) || (x == x1 - 1 && y == x2 + 1) || (x == x1 - 1 && y == x2 - 1) || (x == x1 + 2 && y == x2 - 2) || (x == x1 + 2 && y == x2 + 2) || (x == x1 - 2 && y == x2 + 2) || (x == x1 - 2 && y == x2 - 2)) {
+		return true;
+	}
+	else
+		return false;
+}
 int main() {
 	cout << "Primer Tablero" << endl;
 	Tablero* tab = Tablero::getInstancia();
@@ -12,28 +19,35 @@ int main() {
 	tab->actualizar();
 	cout << tab->toString() << endl;
 	EstrategiaAleatoria* est = new EstrategiaAleatoria();
-	vector<int> jugadas = est->calcularJugadas(tab, 0,1 );
-	//cout << "Posibilidades: " << jugadas[0] << endl;
+	Jugador* jug = new Jugador("Dorian");
+	
+	vector<int> jugadas = jug->calcularJugadas(tab, 5, 1);
+	
+	
+	cout << "Posibilidades: " << jugadas[0] << endl;
 	/*for (int i = 0; i < jugadas.size(); i++) {
 		cout <<"Poscicion " << i<<": "<< jugadas[i] << endl;
 	}*/
-	int var = 0;
-	/*for (int i = -1; i < jugadas[0]-1; i++) {
-		var++;
-		var++;
-		cout <<"Jugada Fila: "<< jugadas[i + var]+1 << endl;
-		cout << "Jugada Columna: " << jugadas[i + var + 1]+1 << endl;
-		cout << "Come con la Jugada?-> "; if (jugadas[i + var + 2] == 1) {
-			cout << "Si" << endl;
+	if (jugadas.size()>0) {
+		int var = 0;
+		for (int i = -1; i < jugadas[0] - 1; i++) {
+			var++;
+			var++;
+			if (jugadaValida(5, 1, jugadas[i + var], jugadas[i + var + 1])) {
+				cout << "Jugada Fila: " << jugadas[i + var] << endl;
+				cout << "Jugada Columna: " << jugadas[i + var + 1] << endl;
+				cout << "Come con la Jugada?-> "; if (jugadas[i + var + 2] == 1) {
+					cout << "Si" << endl;
 
+				}
+				else {
+					cout << "No" << endl;
+				}
+			}
+			cout << "Fin del ciclo: " << i + 2 << endl;
+			cout << "/---------------------------------------------------/" << endl << endl;
 		}
-		else {
-			cout << "No" << endl;
-		}
-		cout << "Fin del ciclo: " << i+2 << endl;
-		cout << "/---------------------------------------------------/" << endl << endl;
-		*/
-
+	}
 
 	cout << "Probando Metodo numeros del 1 al 10" << endl; 
 	for (int i = 0; i < 10; i++) {
@@ -43,7 +57,7 @@ int main() {
 		cout << "Ficha a mover X: " << prub[0] << " Y: " << prub[1] << endl;
 		cout << "Posicion a mover X: " << prub[2] << " Y: " << prub[3] << endl;
 		int x1 = prub[0], x2 = prub[1], x = prub[2], y = prub[3];
-		if ((x == x1 + 1 && y == x2 + 1) || (x == x1 + 1 && y == x2 - 1) || (x == x1 - 1 && y == x2 + 1) || (x == x1 - 1 && y == x2 - 1) || (x == x1 + 2 && y == x2 - 2) || (x == x1 + 2 && y == x2 + 2) || (x == x1 - 2 && y == x2 + 2) || (x == x1 - 2 && y == x2 - 2)) {
+		if(jugadaValida(x1,x2,x,y)) {
 			cout << "Movimiento Valido" << endl;
 		}
 		else {
