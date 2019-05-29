@@ -3,14 +3,9 @@
 #include  "Estrategia.h"
 #include <Windows.h>
 #include "Jugador.h"
+#include "Juego.h"
 using namespace std;
-bool jugadaValida(int x1,int x2, int x, int y) {
-	if ((x == x1 + 1 && y == x2 + 1) || (x == x1 + 1 && y == x2 - 1) || (x == x1 - 1 && y == x2 + 1) || (x == x1 - 1 && y == x2 - 1) || (x == x1 + 2 && y == x2 - 2) || (x == x1 + 2 && y == x2 + 2) || (x == x1 - 2 && y == x2 + 2) || (x == x1 - 2 && y == x2 - 2)) {
-		return true;
-	}
-	else
-		return false;
-}
+
 int main() {
 	cout << "Primer Tablero" << endl;
 	Tablero* tab = Tablero::getInstancia();
@@ -20,14 +15,21 @@ int main() {
 	cout << tab->toString() << endl;
 	EstrategiaAleatoria* est = new EstrategiaAleatoria();
 	Jugador* jug = new Jugador("Dorian");
-	
-	vector<int> jugadas = jug->calcularJugadas(tab, 5, 1);
+	Computadora* po = new Computadora();
+	Juego* jueguito = new Juego(tab, jug, po, est);
+	for (int i = 0; i < 8; i++) {
+		cout << "Ocacion # " << i + 1 << endl;
+		if (jueguito->realizarJugadaPC()) {
+			cout << "Exito ejecutando el metodo" << endl;
+		}
+	}
+	/*vector<int> jugadas = jug->calcularJugadas(tab, 5, 1);
 	
 	
 	cout << "Posibilidades: " << jugadas[0] << endl;
-	/*for (int i = 0; i < jugadas.size(); i++) {
+	for (int i = 0; i < jugadas.size(); i++) {
 		cout <<"Poscicion " << i<<": "<< jugadas[i] << endl;
-	}*/
+	}
 	if (jugadas.size()>0) {
 		int var = 0;
 		for (int i = -1; i < jugadas[0] - 1; i++) {
@@ -67,7 +69,7 @@ int main() {
 	
 	
 	delete est;
-	delete tab;
+	delete tab;*/
 	
 	cin.get();
 	

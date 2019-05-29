@@ -16,6 +16,8 @@ public:
 	bool ingresarJugadaBlancas(int , int );//falta impedir movimientos ambiguios
 	bool ingresarJugadaNegras(int, int);//falta impedir movimientos ambiguios
 	Ficha* getFichaDelTablero(int, int);
+	void eliminar(int, int);
+	void crear(int, int, bool);
 	void actualizar();//refresca las fichas para coronarlas si llegaron al espacio correspondiente
 	string toString();
 	~Tablero();

@@ -137,6 +137,19 @@ Ficha * Tablero::getFichaDelTablero(int x, int y)
 	return tablero[x][y];
 }
 
+void Tablero::eliminar(int x, int y)
+{
+	if (tablero[x][y] != NULL) {
+		delete tablero[x][y];
+		tablero[x][y]=NULL;
+	}
+}
+
+void Tablero::crear(int x, int y, bool z)
+{
+	tablero[x][y] = new Ficha(z);
+}
+
 void Tablero::actualizar()
 {
 	for (int i = 0; i < TAMTABLERO; i++) {

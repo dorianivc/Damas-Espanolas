@@ -178,6 +178,12 @@ vector<int> Computadora::calcularJugadas(Tablero* tab, int x, int y)
 	}
 }
 
+vector<int> Computadora::movimientoRealizar(Tablero* tab, Estrategia* es)
+{
+	vector <int> aux = es->obtenerEstrategia(tab);
+	return aux;
+}
+
 Computadora::~Computadora()
 {
 }

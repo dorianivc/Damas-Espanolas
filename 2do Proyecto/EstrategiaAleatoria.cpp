@@ -13,16 +13,17 @@ vector<int> EstrategiaAleatoria::obtenerEstrategia(Tablero * tab)
 	int x = 0, y = 0;
 	
 	int var = 0;
+	int z = 0; //comestibles
 	bool pass = false;
 	while (pass != true) {
 		vector<int>posicionAleatoriaFicha = obtenerPosicionAJugarAleatoria(tab);
 		jugada = calcularJugadas(tab, posicionAleatoriaFicha[0], posicionAleatoriaFicha[1]);
 		int x1 = posicionAleatoriaFicha[0], x2 = posicionAleatoriaFicha[1];
-		if (jugada[0] > 2) {
+		if (jugada[0] > 1) {
 			int v;
 			srand(time(NULL));
 			for (int i = 0; i < 7; i++) {
-			 v = 2 + rand() % (jugada[0] + 1 - 2);
+			 v = 1 + rand() % (jugada[0] + 1 - 1);
 			}
 
 			
@@ -33,7 +34,7 @@ vector<int> EstrategiaAleatoria::obtenerEstrategia(Tablero * tab)
 				var++;
 				
 				y = jugada[var];
-				
+				z = jugada[var + 1];
 				vector<int>prub;
 				prub.push_back(posicionAleatoriaFicha[0]);
 				prub.push_back(posicionAleatoriaFicha[1]);
@@ -46,7 +47,10 @@ vector<int> EstrategiaAleatoria::obtenerEstrategia(Tablero * tab)
 					salida.push_back(posicionAleatoriaFicha[1]);
 					salida.push_back(x);
 					salida.push_back(y);
+					salida.push_back(z);
+					
 					return salida;
+					
 
 				}
 				else {
@@ -59,6 +63,7 @@ vector<int> EstrategiaAleatoria::obtenerEstrategia(Tablero * tab)
 		}
 		Sleep(1);
 	}
+	return salida;
 }
 
 
