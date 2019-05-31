@@ -256,6 +256,51 @@ bool Juego::realizarJugadaJugador()
 	}
 }
 
+void Juego::setEstrategia(int tipo)
+{
+	switch (tipo) {
+	default: 
+		estra = new EstrategiaAleatoria();
+		break;
+	case 2:
+		//estra= new EstategiaDefensiva();
+		break;
+	case 3:
+		//estra= new EstrategiaOfensiva();
+		break;
+	}
+}
+
+bool Juego::partidaFinaliza()
+{
+	if (ganoNegras() || ganoBlancas()) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool Juego::ganoNegras()
+{
+	if (jugador->getFichasRestantes() == 0 || compu->getCoronas() == 12) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool Juego::ganoBlancas()
+{
+	if (compu->getFichasRestantes() == 0 || jugador->getCoronas() == 12) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 Juego::~Juego()
 {
 	delete estra;

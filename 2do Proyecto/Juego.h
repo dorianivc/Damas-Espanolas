@@ -5,16 +5,21 @@
 #include "EstrategiaAleatoria.h"
 using namespace std;
 class Juego
-{private:
+{
+private:
 	Tablero* tab;
 	Jugador* jugador;
 	Computadora* compu;
 	Estrategia* estra;
 public:
-	Juego(Tablero*, Jugador* = new Jugador("Jugador"), Computadora* = new Computadora(), Estrategia * = new EstrategiaAleatoria());
+	Juego(Tablero*, Jugador* = new Jugador("Jugador"), Computadora* = new Computadora(), Estrategia* = new EstrategiaAleatoria());
 	bool jugadaValida(int, int, int, int);
 	bool realizarJugadaPC();
 	bool realizarJugadaJugador();
+	void setEstrategia(int);
+	bool partidaFinaliza();
+	bool ganoNegras();
+	bool ganoBlancas();
 	~Juego();
 };
 

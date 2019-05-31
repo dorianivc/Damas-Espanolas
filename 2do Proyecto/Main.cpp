@@ -7,78 +7,74 @@
 using namespace std;
 
 int main() {
-	cout << "Primer Tablero" << endl;
+	string menuA, nombre;
+	int MenuA;
+	cout << "Bienvenido a Damas " << endl;
+	cout << "Por favor ingrese su nombre " << endl;
+	getline(cin, nombre);
+	cout << "Digite 1 para jugar" << endl;
+	cout << "Digite 2 para cambiar la estrategia de la computadora" << endl;
+	cout << "Digite 3 para cargar partida guardada" << endl;
+	cout << "Por favor seleccione una opcion del menu" << endl;
 	Tablero* tab = Tablero::getInstancia();
-	cout << tab->toString() << endl;
-	//tab->ingresarJugadaBlancas(8, 2);//falta impedir movimientos ambiguios
-	tab->actualizar();
-	cout << tab->toString() << endl;
-	EstrategiaAleatoria* est = new EstrategiaAleatoria();
-	Jugador* jug = new Jugador("Dorian");
-	Computadora* po = new Computadora();
-	Juego* jueguito = new Juego(tab, jug, po, est);
-
-	for (int i = 0; i < 8; i++) {
-		cout << "Ocacion # " << i + 1 << endl;
-		if (jueguito->realizarJugadaPC()) {
-			cout << "Exito ejecutando el metodo" << endl;
-
-		}
-		cout << tab->toString() << endl;
-		if (jueguito->realizarJugadaJugador()) {
-			cout << "Realizado con exito" << endl;
-		}
-	}
-
-	//cout << jug->toString() << endl;
-	/*vector<int> jugadas = jug->calcularJugadas(tab, 5, 1);
-	
-	
-	cout << "Posibilidades: " << jugadas[0] << endl;
-	for (int i = 0; i < jugadas.size(); i++) {
-		cout <<"Poscicion " << i<<": "<< jugadas[i] << endl;
-	}
-	if (jugadas.size()>0) {
-		int var = 0;
-		for (int i = -1; i < jugadas[0] - 1; i++) {
-			var++;
-			var++;
-			if (jugadaValida(5, 1, jugadas[i + var], jugadas[i + var + 1])) {
-				cout << "Jugada Fila: " << jugadas[i + var] << endl;
-				cout << "Jugada Columna: " << jugadas[i + var + 1] << endl;
-				cout << "Come con la Jugada?-> "; if (jugadas[i + var + 2] == 1) {
-					cout << "Si" << endl;
-
+	Jugador* jugador = new Jugador(nombre);
+	Computadora* compu = new Computadora();
+	Juego* juegoPrincipal = new Juego(tab, jugador, compu);//seteado para ser aleatorio automaticamente
+	getline(cin, menuA);
+	MenuA = atoi(menuA.c_str());
+	if (MenuA == 1) {
+		string quienEmpieza, salirS;
+		int empieza = 1;
+		cout << "Si desea empezar usted, presione 1" << endl;
+		cout << "Si desea que la computadora empiece, presione 2" << endl;
+		getline(cin, quienEmpieza);
+		empieza = atoi(quienEmpieza.c_str());
+		bool salir = false;
+		do{
+			cout << "Si desea salir, presione 1, sino solo presione enter" << endl;
+			getline(cin, salirS);
+			int aux = atoi(salirS.c_str());
+			if (aux == 1) {
+				salir = true;
+			}
+			else {
+				system("cls");
+			}
+			if (salir) {
+				cout << "Listo" << endl;
+				system("cls");
+				salir = true;
+			}
+			else {
+				if (empieza == 2) {
+					bool jugoPC = false;
+					bool jugoJugador = false;
+					do {
+						cout << "Pensando" << endl;
+						jugoPC = juegoPrincipal->realizarJugadaPC();
+					} while (jugoPC != true);
+					do {
+						jugoJugador = juegoPrincipal->realizarJugadaJugador();
+					} while (jugoJugador != true);
 				}
-				else {
-					cout << "No" << endl;
+				else
+				{
+					cout << "Empieza jugador" << endl;
+					bool jugoPC = false;
+					bool jugoJugador = false;
+					do {
+						jugoJugador = juegoPrincipal->realizarJugadaJugador();
+					} while (jugoJugador != true);
+					do {
+						cout << "Pensando" << endl;
+						jugoPC = juegoPrincipal->realizarJugadaPC();
+					} while (jugoPC != true);
+
 				}
 			}
-			cout << "Fin del ciclo: " << i + 2 << endl;
-			cout << "/---------------------------------------------------/" << endl << endl;
-		}
-	}
 
-	cout << "Probando Metodo numeros del 1 al 10" << endl; 
-	for (int i = 0; i < 10; i++) {
-		Sleep(1);
-		cout << "# " << i+1 << endl;
-		vector<int> prub = est->obtenerEstrategia(tab);
-		cout << "Ficha a mover X: " << prub[0] << " Y: " << prub[1] << endl;
-		cout << "Posicion a mover X: " << prub[2] << " Y: " << prub[3] << endl;
-		int x1 = prub[0], x2 = prub[1], x = prub[2], y = prub[3];
-		if(jugadaValida(x1,x2,x,y)) {
-			cout << "Movimiento Valido" << endl;
-		}
-		else {
-			cout << "Movimiento Invalido" << endl;
-		}
+		} while (salir != true);
 	}
-	
-	
-	delete est;
-	delete tab;*/
-	
 	cin.get();
 	
 	return 0;
