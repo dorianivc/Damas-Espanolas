@@ -71,3 +71,12 @@ vector<int> EstrategiaAleatoria::obtenerEstrategia(Tablero * tab)
 EstrategiaAleatoria::~EstrategiaAleatoria()
 {
 }
+
+bool EstrategiaAleatoria::jugadaValida(int x1, int x2, int x, int y)
+{
+	if ((x == x1 + 1 && y == x2 + 1) || (x == x1 + 1 && y == x2 - 1) || (x == x1 - 1 && y == x2 + 1) || (x == x1 - 1 && y == x2 - 1) || (x == x1 + 2 && y == x2 - 2) || (x == x1 + 2 && y == x2 + 2) || (x == x1 - 2 && y == x2 + 2) || (x == x1 - 2 && y == x2 - 2)) {
+		return true;
+	}
+	else
+		return false;
+}

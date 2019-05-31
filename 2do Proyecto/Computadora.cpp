@@ -30,7 +30,7 @@ vector<int> Computadora::calcularJugadas(Tablero* tab, int x, int y)
 			Ficha* aux = tab->getFichaDelTablero(x, y);
 			Ficha* aux2 = NULL;
 			if (aux != NULL) {
-				if (x < 7) {// ficha sin corona;
+				if (x < 8) {// ficha sin corona;
 					if (y < 7) {
 						if (tab->getFichaDelTablero(x + 1, y + 1) == NULL) {// 1 PASO DIAGONAL DERECHA
 							posibilidades++;
@@ -99,7 +99,7 @@ vector<int> Computadora::calcularJugadas(Tablero* tab, int x, int y)
 								if (tab->getFichaDelTablero(x - 1, y - 1) == NULL || tab->getFichaDelTablero(x - 1, y - 1)->esFichaNegra() == false) {
 									posibilidades++;
 									x6Aux = x - 2;
-									x6Aux = y - 2;
+									y6Aux = y - 2;
 									if (tab->getFichaDelTablero(x - 1, y - 1) != NULL && tab->getFichaDelTablero(x - 1, y - 1)->esFichaNegra() == false) {
 										comestible6 = 1;
 									}

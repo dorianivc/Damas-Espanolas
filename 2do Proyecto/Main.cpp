@@ -10,19 +10,27 @@ int main() {
 	cout << "Primer Tablero" << endl;
 	Tablero* tab = Tablero::getInstancia();
 	cout << tab->toString() << endl;
-	tab->ingresarJugadaBlancas(8, 2);//falta impedir movimientos ambiguios
+	//tab->ingresarJugadaBlancas(8, 2);//falta impedir movimientos ambiguios
 	tab->actualizar();
 	cout << tab->toString() << endl;
 	EstrategiaAleatoria* est = new EstrategiaAleatoria();
 	Jugador* jug = new Jugador("Dorian");
 	Computadora* po = new Computadora();
 	Juego* jueguito = new Juego(tab, jug, po, est);
+
 	for (int i = 0; i < 8; i++) {
 		cout << "Ocacion # " << i + 1 << endl;
 		if (jueguito->realizarJugadaPC()) {
 			cout << "Exito ejecutando el metodo" << endl;
+
+		}
+		cout << tab->toString() << endl;
+		if (jueguito->realizarJugadaJugador()) {
+			cout << "Realizado con exito" << endl;
 		}
 	}
+
+	//cout << jug->toString() << endl;
 	/*vector<int> jugadas = jug->calcularJugadas(tab, 5, 1);
 	
 	

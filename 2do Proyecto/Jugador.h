@@ -14,6 +14,7 @@ public:
 	void setNombre(string);
 	string toString();
 	Jugador(const Jugador&);
+	bool validarJugada(int, int, int, int);
 	vector<int> calcularJugadas(Tablero* tab, int x, int y);
 	~Jugador();
 };
