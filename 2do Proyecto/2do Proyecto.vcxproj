@@ -115,7 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ArbolBinario.h" />
+    <ClInclude Include="AnalizadorArchivos.h" />
     <ClInclude Include="Computadora.h" />
     <ClInclude Include="Estrategia.h" />
     <ClInclude Include="EstrategiaAleatoria.h" />
@@ -123,11 +123,11 @@
     <ClInclude Include="Juego.h" />
     <ClInclude Include="Jugador.h" />
     <ClInclude Include="Jugadores.h" />
-    <ClInclude Include="Nodo.h" />
+    <ClInclude Include="ObjetoBase.h" />
     <ClInclude Include="Tablero.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ArbolBinario.cpp" />
+    <ClCompile Include="AnalizadorArchivos.cpp" />
     <ClCompile Include="Computadora.cpp" />
     <ClCompile Include="Estrategia.cpp" />
     <ClCompile Include="EstrategiaAleatoria.cpp" />
@@ -136,7 +136,7 @@
     <ClCompile Include="Jugador.cpp" />
     <ClCompile Include="Jugadores.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Nodo.cpp" />
+    <ClCompile Include="ObjetoBase.cpp" />
     <ClCompile Include="Tablero.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

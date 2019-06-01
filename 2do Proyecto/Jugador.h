@@ -1,8 +1,5 @@
 #ifndef JUGADOR
 #define JUGADOR
-#include <string>
-#include <iostream>
-#include <sstream>
 #include"Jugadores.h"
 using namespace std;
 class Jugador:public Jugadores
@@ -16,6 +13,7 @@ public:
 	Jugador(const Jugador&);
 	bool validarJugada(int, int, int, int);
 	vector<int> calcularJugadas(Tablero* tab, int x, int y);
+	string serializar();
 	~Jugador();
 };
 #endif // !JUGADOR

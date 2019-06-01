@@ -11,6 +11,7 @@ public:
 	string toString();
 	vector<int> calcularJugadas(Tablero* tab, int x, int y);//Metodo Heredado
 	vector<int> movimientoRealizar(Tablero*, Estrategia*);
+	string serializar();
 	~Computadora();
 };
 

@@ -184,6 +184,13 @@ vector<int> Computadora::movimientoRealizar(Tablero* tab, Estrategia* es)
 	return aux;
 }
 
+string Computadora::serializar()
+{
+	stringstream p;
+	p << fichasRestantes << "\t" << coronas << "\t";
+	return p.str();
+}
+
 Computadora::~Computadora()
 {
 }

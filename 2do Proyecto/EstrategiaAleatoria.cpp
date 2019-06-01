@@ -41,7 +41,7 @@ vector<int> EstrategiaAleatoria::obtenerEstrategia(Tablero * tab)
 				prub.push_back(x);
 				prub.push_back(y);
 
-				if((x==x1+1&&y==x2+1)|| (x == x1 + 1 && y == x2 - 1)||(x == x1 - 1 && y == x2 + 1)||(x == x1 - 1 && y == x2 - 1)|| (x == x1 + 2 && y == x2 - 2)|| (x == x1 + 2 && y == x2 +2)|| (x == x1 - 2 && y == x2 + 2)|| (x == x1 - 2 && y == x2 - 2)){
+				if(jugadaValida(posicionAleatoriaFicha[0], posicionAleatoriaFicha[1],x,y,tab->getFichaDelTablero(posicionAleatoriaFicha[0], posicionAleatoriaFicha[1]))){
 					pass = true;
 					salida.push_back(posicionAleatoriaFicha[0]);
 					salida.push_back(posicionAleatoriaFicha[1]);
@@ -72,11 +72,22 @@ EstrategiaAleatoria::~EstrategiaAleatoria()
 {
 }
 
-bool EstrategiaAleatoria::jugadaValida(int x1, int x2, int x, int y)
+bool EstrategiaAleatoria::jugadaValida(int x1, int x2, int jugadaDefinitivaX, int jugadaDefinitivaY, Ficha* fic)
 {
-	if ((x == x1 + 1 && y == x2 + 1) || (x == x1 + 1 && y == x2 - 1) || (x == x1 - 1 && y == x2 + 1) || (x == x1 - 1 && y == x2 - 1) || (x == x1 + 2 && y == x2 - 2) || (x == x1 + 2 && y == x2 + 2) || (x == x1 - 2 && y == x2 + 2) || (x == x1 - 2 && y == x2 - 2)) {
-		return true;
+	if (fic->getesCorona() == false) {
+		if ((jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 + 1) || (jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 - 1) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 + 2) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 - 2)) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
-	else
-		return false;
+	else {
+		if ((jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 + 1) || (jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 - 1) || (jugadaDefinitivaX == x1 - 1 && jugadaDefinitivaY == x2 + 1) || (jugadaDefinitivaX == x1 - 1 && jugadaDefinitivaY == x2 - 1) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 + 2) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 - 2) || (jugadaDefinitivaX == x1 - 2 && jugadaDefinitivaY == x2 + 2) || (jugadaDefinitivaX == x1 - 2 && jugadaDefinitivaY == x2 - 2)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }

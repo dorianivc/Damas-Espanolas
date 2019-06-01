@@ -1,9 +1,8 @@
-#include "Tablero.h"
 #include "EstrategiaAleatoria.h"
 #include  "Estrategia.h"
 #include <Windows.h>
-#include "Jugador.h"
 #include "Juego.h"
+#include "AnalizadorArchivos.h"
 using namespace std;
 
 int main() {
@@ -20,6 +19,7 @@ int main() {
 	Jugador* jugador = new Jugador(nombre);
 	Computadora* compu = new Computadora();
 	Juego* juegoPrincipal = new Juego(tab, jugador, compu);//seteado para ser aleatorio automaticamente
+	AnalizadorArchivos::recuperar(juegoPrincipal);
 	getline(cin, menuA);
 	MenuA = atoi(menuA.c_str());
 	if (MenuA == 1) {
@@ -31,6 +31,7 @@ int main() {
 		empieza = atoi(quienEmpieza.c_str());
 		bool salir = false;
 		do{
+			//system("cls");
 			cout << "Si desea salir, presione 1, sino solo presione enter" << endl;
 			getline(cin, salirS);
 			int aux = atoi(salirS.c_str());
@@ -52,9 +53,13 @@ int main() {
 					do {
 						cout << "Pensando" << endl;
 						jugoPC = juegoPrincipal->realizarJugadaPC();
+						//AnalizadorArchivos::guardar(juegoPrincipal);
+						cout << tab->toString() << endl;
+						cin.get();
 					} while (jugoPC != true);
 					do {
 						jugoJugador = juegoPrincipal->realizarJugadaJugador();
+						cin.get();
 					} while (jugoJugador != true);
 				}
 				else
@@ -64,12 +69,19 @@ int main() {
 					bool jugoJugador = false;
 					do {
 						jugoJugador = juegoPrincipal->realizarJugadaJugador();
+						cin.get();
 					} while (jugoJugador != true);
 					do {
 						cout << "Pensando" << endl;
 						jugoPC = juegoPrincipal->realizarJugadaPC();
+						cin.get();
 					} while (jugoPC != true);
 
+				}
+				if (juegoPrincipal->partidaFinaliza()) {
+					cout << "Partida Finalizada" << endl;
+					cout << compu->toString() << endl;
+					cout << jugador->toString() << endl;
 				}
 			}
 

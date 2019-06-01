@@ -1,7 +1,10 @@
 #pragma once
 #include <string>
+#include <iostream>
+#include <sstream>
+#include "ObjetoBase.h"
 using namespace std;
-class Ficha
+class Ficha:public ObjetoBase
 {private:
 	bool esNegra;
 	bool esCorona;
@@ -11,6 +14,7 @@ public:
 	string imprimeFicha();
 	bool esFichaNegra();
 	bool getesCorona();
+	string serializar();
 	void coronar();
 	~Ficha();
 };

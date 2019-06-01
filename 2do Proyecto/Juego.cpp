@@ -13,13 +13,45 @@ Juego::Juego(Tablero * t, Jugador * j, Computadora * c, Estrategia * e)
 	estra = e;
 }
 
-bool Juego::jugadaValida(int x1, int x2, int x, int y)
+bool Juego::jugadaValidaBlancas(int x1, int x2, int jugadaDefinitivaX, int jugadaDefinitivaY, Ficha* fic)
 {
-	if ((x == x1 + 1 && y == x2 + 1) || (x == x1 + 1 && y == x2 - 1) || (x == x1 - 1 && y == x2 + 1) || (x == x1 - 1 && y == x2 - 1) || (x == x1 + 2 && y == x2 - 2) || (x == x1 + 2 && y == x2 + 2) || (x == x1 - 2 && y == x2 + 2) || (x == x1 - 2 && y == x2 - 2)) {
-		return true;
+	if (fic->getesCorona() == false) {
+
+
+		if ((jugadaDefinitivaX == x1 - 1 && jugadaDefinitivaY == x2 + 1) || (jugadaDefinitivaX == x1 - 1 && jugadaDefinitivaY == x2 - 1) || (jugadaDefinitivaX == x1 - 2 && jugadaDefinitivaY == x2 + 2) || (jugadaDefinitivaX == x1 - 2 && jugadaDefinitivaY == x2 - 2)) {
+			return true;
+		}
+		else
+			return false;
 	}
-	else
-		return false;
+	else {
+		if ((jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 + 1) || (jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 - 1) || (jugadaDefinitivaX == x1 - 1 && jugadaDefinitivaY == x2 + 1) || (jugadaDefinitivaX == x1 - 1 && jugadaDefinitivaY == x2 - 1) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 + 2) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 - 2) || (jugadaDefinitivaX == x1 - 2 && jugadaDefinitivaY == x2 + 2) || (jugadaDefinitivaX == x1 - 2 && jugadaDefinitivaY == x2 - 2)) {
+			return true;
+		}
+		else
+			return false;
+	}
+
+}
+
+bool Juego::jugadaValidaNegras(int x1, int x2, int jugadaDefinitivaX, int jugadaDefinitivaY, Ficha* fic)
+{
+	if (fic->getesCorona() == false) {
+		if ((jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 + 1) || (jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 - 1) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 + 2) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 - 2)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		if ((jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 + 1) || (jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 - 1) || (jugadaDefinitivaX == x1 - 1 && jugadaDefinitivaY == x2 + 1) || (jugadaDefinitivaX == x1 - 1 && jugadaDefinitivaY == x2 - 1) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 + 2) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 - 2) || (jugadaDefinitivaX == x1 - 2 && jugadaDefinitivaY == x2 + 2) || (jugadaDefinitivaX == x1 - 2 && jugadaDefinitivaY == x2 - 2)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
 
 bool Juego::realizarJugadaPC()
@@ -30,7 +62,7 @@ bool Juego::realizarJugadaPC()
 		//Hasta aqui, el vector contiene las coordenadas de la ficha a mover y su movimiento
 	int casX = jugadaObtenidaEstrategia[0]; int casY = jugadaObtenidaEstrategia[1];
 	int movX = jugadaObtenidaEstrategia[2]; int movY = jugadaObtenidaEstrategia[3]; int com = jugadaObtenidaEstrategia[4];
-	if (jugadaValida(casX, casY, movX, movY)) {
+	if (jugadaValidaNegras(casX, casY, movX, movY, tab->getFichaDelTablero(jugadaObtenidaEstrategia[0], jugadaObtenidaEstrategia[1]))) {
 		if (tab->getFichaDelTablero(casX, casY)->getesCorona()) {
 			tab->eliminar(casX, casY);
 			tab->crear(movX, movY, true);
@@ -75,6 +107,36 @@ bool Juego::realizarJugadaPC()
 	tab->actualizar();
 
 	return true;
+}
+
+Estrategia* Juego::getEstrategia()
+{
+	return estra;
+}
+
+void Juego::setEstrategia(Estrategia* x)
+{
+	estra = x;
+}
+
+Tablero* Juego::getTablero()
+{
+	return tab;
+}
+
+Jugador* Juego::getJugador()
+{
+	return jugador;
+}
+
+Computadora* Juego::getComputadora()
+{
+	return compu;
+}
+
+int Juego::getTipoEstrategia()
+{
+	return 1;//MODIFICAR
 }
 
 bool Juego::realizarJugadaJugador()
@@ -139,14 +201,15 @@ bool Juego::realizarJugadaJugador()
 						int z = 0;
 						cout << "Usted puede mover la ficha a " << limite << " posibles posiciones" << endl;
 						
-						for (int i = 0; i <(3-1)*jugada[0]; i++) {
-							/*cout << i + 1 << " Aqui el i+1" << endl;
-							cout << i + 2 << " Aqui el i+2" << endl;
-							cout << i + 3 << " Aqui el i+3" << endl;*/
-							cout << "Fila : " << jugada[i+1] << endl;
-							cout << "Columna: " << jugada[i+2] << endl;
+						for (int i = 0; i <limite; i++) {
+							/*cout << "Jugada o " << jugada[0] << endl;
+							cout << (3*i)+1 << " Aqui el (3*i)+1" << endl;
+							cout << (3*i)+2 << " Aqui el (3*i)+2" << endl;
+							cout << (3*i)+3 << " Aqui el (3*i)+3" << endl;*/
+							cout << "Fila : " << jugada[(3*i)+1] << endl;
+							cout << "Columna: " << jugada[(i*3)+2] << endl;
 							cout << "Come con la jugada: ";
-							if (jugada[i+3] > 0) {
+							if (jugada[(i*3)+3] > 0) {
 									cout << " SI" << endl;
 							}
 							else {
@@ -154,8 +217,7 @@ bool Juego::realizarJugadaJugador()
 								}
 						cout << "/-----------------------------/" << endl;
 							
-						i++;
-						i++;
+						
 						}
 						int jugadaDefinitivaX = 0, jugadaDefinitivaY = 0;
 						string jugadaX;
@@ -168,7 +230,7 @@ bool Juego::realizarJugadaJugador()
 						getline(cin, jugadaY);
 						jugadaDefinitivaY = atoi(jugadaY.c_str());
 						bool pass = true;
-						if ((jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 + 1) || (jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 - 1) || (jugadaDefinitivaX == x1 - 1 && jugadaDefinitivaY == x2 + 1) || (jugadaDefinitivaX == x1 - 1 && jugadaDefinitivaY == x2 - 1) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 + 2) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 - 2) || (jugadaDefinitivaX == x1 - 2 && jugadaDefinitivaY == x2 + 2) || (jugadaDefinitivaX == x1 - 2 && jugadaDefinitivaY == x2 - 2)) {
+						if(jugadaValidaBlancas(x1,x2,jugadaDefinitivaX, jugadaDefinitivaY, tab->getFichaDelTablero(x1,x2))) {
 							int x = jugadaDefinitivaX;
 							int y = jugadaDefinitivaY;
 							if (tab->getFichaDelTablero(x1, x2)->getesCorona()) {

@@ -1,7 +1,7 @@
+#pragma once
 #include"Tablero.h"
 #include "Jugador.h"
 #include "Computadora.h"
-#include "Estrategia.h"
 #include "EstrategiaAleatoria.h"
 using namespace std;
 class Juego
@@ -13,8 +13,15 @@ private:
 	Estrategia* estra;
 public:
 	Juego(Tablero*, Jugador* = new Jugador("Jugador"), Computadora* = new Computadora(), Estrategia* = new EstrategiaAleatoria());
-	bool jugadaValida(int, int, int, int);
+	bool jugadaValidaBlancas(int, int, int, int, Ficha*);
+	bool jugadaValidaNegras(int, int, int, int, Ficha*);
 	bool realizarJugadaPC();
+	Estrategia* getEstrategia();
+	void setEstrategia(Estrategia*);
+	Tablero* getTablero();
+	Jugador* getJugador();
+	Computadora* getComputadora();
+	int getTipoEstrategia();
 	bool realizarJugadaJugador();
 	void setEstrategia(int);
 	bool partidaFinaliza();

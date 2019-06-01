@@ -145,6 +145,28 @@ void Tablero::eliminar(int x, int y)
 	}
 }
 
+void Tablero::vaciarTablero()
+{
+	for (int i = 0; i < 8; i++) {
+		for (int y = 0; y < 8; y++) {
+			if (tablero[i][y] != NULL)
+				delete  tablero[i][y];
+			tablero[i][y] = NULL;
+		}
+	}
+}
+
+bool Tablero::fichaExiste(int x, int y)
+{
+	if (tablero[x][y] != NULL) {
+		return true;
+
+	}
+	else {
+		return false;
+	}
+}
+
 void Tablero::crear(int x, int y, bool z)
 {
 	tablero[x][y] = new Ficha(z);
@@ -197,6 +219,20 @@ string Tablero::toString()
 
 		return p.str();
 	}
+
+string Tablero::serializar()
+{
+	stringstream p;
+	for (int i = 0; i < TAMTABLERO; i++) {
+		for (int y = 0; y < TAMTABLERO; y++) {
+			if (tablero[i][y] != NULL) {
+				//cout << "X: " << i << " Y: " << y <<"--->"<< i << "\t" << y << "\t" << tablero[i][y]->serializar()<< endl;
+				p << i << "\t" << y << "\t" << tablero[i][y]->serializar();
+			}
+		}
+	}
+	return p.str();
+}
 
 
 

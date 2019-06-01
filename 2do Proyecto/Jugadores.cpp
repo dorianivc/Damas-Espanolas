@@ -20,6 +20,16 @@ int Jugadores::getFichasRestantes()
 	return fichasRestantes;
 }
 
+void Jugadores::setFichasRestantes(int x)
+{
+	fichasRestantes = x;
+}
+
+void Jugadores::setCoronas(int x)
+{
+	coronas = x;
+}
+
 bool Jugadores::restarFicha()
 {
 	if (fichasRestantes > 0) {

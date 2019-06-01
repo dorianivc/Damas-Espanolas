@@ -42,6 +42,27 @@ bool Ficha::getesCorona()
 	return esCorona;
 }
 
+string Ficha::serializar()
+{
+	stringstream p;
+	int negra = 0;
+	int cor = 0;
+	if (esNegra) {
+		negra = 1;
+	}
+	else {
+		negra = 0;
+	}
+	if (esCorona) {
+		cor = 1;
+	}
+	else {
+		cor = 0;
+	}
+	p << negra << "\t" << cor<<"\t";
+	return p.str();
+}
+
 
 
 void Ficha::coronar()

@@ -244,6 +244,13 @@ throw p;
 	return estrategia;
 }
 
+string Jugador::serializar()
+{
+	stringstream p;
+	p << nombre << "\t" << fichasRestantes << "\t" << coronas << "\t";
+	return p.str();
+}
+
 Jugador::~Jugador()
 {
 }
