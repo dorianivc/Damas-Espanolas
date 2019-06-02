@@ -231,53 +231,115 @@ bool Juego::realizarJugadaJugador()
 						jugadaDefinitivaY = atoi(jugadaY.c_str());
 						bool pass = true;
 						if(jugadaValidaBlancas(x1,x2,jugadaDefinitivaX, jugadaDefinitivaY, tab->getFichaDelTablero(x1,x2))) {
+						
+							
 							int x = jugadaDefinitivaX;
 							int y = jugadaDefinitivaY;
-							if (tab->getFichaDelTablero(x1, x2)->getesCorona()) {
-								tab->eliminar(x1, x2);
-								tab->crear(jugadaDefinitivaX, jugadaDefinitivaY, false);
-								tab->getFichaDelTablero(jugadaDefinitivaX, jugadaDefinitivaY)->coronar();
+							if (tab->getFichaDelTablero(x1, x2)->getesCorona()) {//si come hacia adelante;		
+								if (x - x1 == 1 || x - x1 == -1) {
+									if (tab->getFichaDelTablero(x1, x2)->getesCorona()) {
+										tab->eliminar(x1, x2);
+										tab->crear(jugadaDefinitivaX, jugadaDefinitivaY, false);
+										tab->getFichaDelTablero(jugadaDefinitivaX, jugadaDefinitivaY)->coronar();
+									}
+									else {
+
+										tab->eliminar(x1, x2);
+										tab->crear(jugadaDefinitivaX, jugadaDefinitivaY, false);
+									}
+									cout << compu->toString() << endl;
+								}else
+									if (x - x1 == 2) {
+										if (y - x2 == -2) {
+										//izquierda
+										tab->eliminar((x - 1), (y + 1));
+										compu->restarFicha();
+										if (tab->getFichaDelTablero(x1, x2)->getesCorona()) {
+											tab->eliminar(x1, x2);
+											tab->crear(jugadaDefinitivaX, jugadaDefinitivaY, false);
+											tab->getFichaDelTablero(jugadaDefinitivaX, jugadaDefinitivaY)->coronar();
+										}
+										else {
+
+											tab->eliminar(x1, x2);
+											tab->crear(jugadaDefinitivaX, jugadaDefinitivaY, false);
+										}
+										cout << compu->toString() << endl;
+									}
+										if (y - x2 == 2) {
+
+										//derecha
+										tab->eliminar((x - 1), (y - 1));
+										compu->restarFicha();
+										if (tab->getFichaDelTablero(x1, x2)->getesCorona()) {
+											tab->eliminar(x1, x2);
+											tab->crear(jugadaDefinitivaX, jugadaDefinitivaY, false);
+											tab->getFichaDelTablero(jugadaDefinitivaX, jugadaDefinitivaY)->coronar();
+										}
+										else {
+
+											tab->eliminar(x1, x2);
+											tab->crear(jugadaDefinitivaX, jugadaDefinitivaY, false);
+										}
+										cout << compu->toString() << endl;
+										}
+								}
+
 							}
 							else {
-								
-								tab->eliminar(x1, x2);
-								tab->crear(jugadaDefinitivaX, jugadaDefinitivaY, false);
+								if (x - x1 == 1 || x - x1 == -1) {
+									if (tab->getFichaDelTablero(x1, x2)->getesCorona()) {
+										tab->eliminar(x1, x2);
+										tab->crear(jugadaDefinitivaX, jugadaDefinitivaY, false);
+										tab->getFichaDelTablero(jugadaDefinitivaX, jugadaDefinitivaY)->coronar();
+									}
+									else {
+
+										tab->eliminar(x1, x2);
+										tab->crear(jugadaDefinitivaX, jugadaDefinitivaY, false);
+									}
+									cout << compu->toString() << endl;
+								} else if (x - x1 == -2) {
+									//verificar si comio a la izquierda o a la derecha
+									if (y - x2 == 2) {//izquierda
+										tab->eliminar((x + 1), (y - 1));
+										compu->restarFicha();
+										if (tab->getFichaDelTablero(x1, x2)->getesCorona()) {
+											tab->eliminar(x1, x2);
+											tab->crear(jugadaDefinitivaX, jugadaDefinitivaY, false);
+											tab->getFichaDelTablero(jugadaDefinitivaX, jugadaDefinitivaY)->coronar();
+										}
+										else {
+
+											tab->eliminar(x1, x2);
+											tab->crear(jugadaDefinitivaX, jugadaDefinitivaY, false);
+										}
+										cout << compu->toString() << endl;
+									}
+									if (y - x2 == -2) {//derecha
+										tab->eliminar((x + 1), (y + 1));
+										compu->restarFicha();
+										if (tab->getFichaDelTablero(x1, x2)->getesCorona()) {
+											tab->eliminar(x1, x2);
+											tab->crear(jugadaDefinitivaX, jugadaDefinitivaY, false);
+											tab->getFichaDelTablero(jugadaDefinitivaX, jugadaDefinitivaY)->coronar();
+										}
+										else {
+
+											tab->eliminar(x1, x2);
+											tab->crear(jugadaDefinitivaX, jugadaDefinitivaY, false);
+										}
+										cout << compu->toString() << endl;
+
+									}
+								}
 							}
 							cout <<"Restas de X :"<< x - x1 << endl;
 							cout << "Restas de Y :" << y - x2 << endl;
 							//verificar si comio a la izquierda o a la derecha
 
-							if (x - x1 == -2) {
-								//verificar si comio a la izquierda o a la derecha
-								if (y - x2 == 2) {//izquierda
-									tab->eliminar((x + 1), (y -1));
-									compu->restarFicha();
-									cout << compu->toString() << endl;
-								}
-								if (y - x2 == -2) {//derecha
-									tab->eliminar((x + 1), (y +1));
-									compu->restarFicha();
-									cout << compu->toString() << endl;
-								}
-							}
-							if (tab->getFichaDelTablero(x, y)->getesCorona()) {//si come hacia adelante;		
-								if (x - x1 == 2) {
-									if (y - x2 == -2) {
-										//izquierda
-										tab->eliminar((x - 1), (y + 1));
-										compu->restarFicha();
-										cout << compu->toString() << endl;
-									}
-									if (y - x2 == 2) {
-
-										//derecha
-										tab->eliminar((x - 1), (y - 1));
-										compu->restarFicha();
-										cout << compu->toString() << endl;
-									}
-								}
-
-							}
+							
+							
 								
 							tab->actualizar();
 							

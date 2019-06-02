@@ -59,12 +59,17 @@ void AnalizadorArchivos::recuperar(Juego* juego)
 				juego->getTablero()->getFichaDelTablero(x, y)->coronar();
 			}
 		}
-
+		cout << "Tablero recueperado" << endl;
+		cout << juego->getTablero()->toString() << endl;
+	}
+	else {
+		cout << "Error abriendo el archivo --> InformacionTableroGuardada.txt" << endl;
+		cout << "Archivo no existe o dañado" << endl;
 	}
 	archivoTablero.close();
 	//ya tuvo que haber recuperado las fichas
-	ifstream archivoJugador;
 	
+	ifstream archivoJugador;
 	archivoJugador.open("InformacionJugadorGuardada.txt");
 	if (!archivoJugador.fail()) {
 		string nombre;
@@ -72,7 +77,7 @@ void AnalizadorArchivos::recuperar(Juego* juego)
 		string corRestantes;
 		int fichasRestantes;
 		int cor;
-		while (!archivoJugador.eof()) {
+		//while (!archivoJugador.eof()) {
 			getline(archivoJugador, nombre, '\t');
 			getline(archivoJugador, fiRestantes, '\t');
 			fichasRestantes = atoi(fiRestantes.c_str());
@@ -81,7 +86,13 @@ void AnalizadorArchivos::recuperar(Juego* juego)
 			juego->getJugador()->setNombre(nombre);
 			juego->getJugador()->setFichasRestantes(fichasRestantes);
 			juego->getJugador()->setCoronas(cor);
-		}
+		//}
+		cout << "Jugador recuperado" << endl;
+		cout << juego->getJugador()->toString() << endl;
+	}
+	else {
+		cout << "Error abriendo el archivo --> InformacionJugadorGuardada.txt" << endl;
+		cout << "Archivo no existe o dañado" << endl;
 	}
 	archivoJugador.close();
 	//Ya recupero jugador
@@ -94,14 +105,20 @@ void AnalizadorArchivos::recuperar(Juego* juego)
 		string corRestantes;
 		int fichasRestantes;
 		int cor;
-		while (!archivoComputadora.eof()) {
+	//	while (!archivoComputadora.eof()) {
 			getline(archivoComputadora, fiRestantes, '\t');
 			fichasRestantes = atoi(fiRestantes.c_str());
 			getline(archivoComputadora, corRestantes, '\t');
 			cor = atoi(corRestantes.c_str());
 			juego->getComputadora()->setFichasRestantes(fichasRestantes);
 			juego->getComputadora()->setCoronas(cor);
-		}
+	//	}
+		cout << "Computadora Cargada" << endl;
+		cout << juego->getComputadora()->toString() << endl;
+	}
+	else {
+		cout << "Error abriendo el archivo --> InformacionComputadoraGuardada.txt" << endl;
+		cout << "Archivo no existe o dañado" << endl;
 	}
 	archivoComputadora.close();
 
@@ -117,6 +134,11 @@ void AnalizadorArchivos::recuperar(Juego* juego)
 				juego->setEstrategia(new EstrategiaAleatoria());
 			}
 		}
+		cout << "Estrategia Cargada" << endl;
+	}
+	else {
+		cout << "Error abriendo el archivo --> InformacionEstrategiaGuardada.txt" << endl;
+		cout << "Archivo no existe o dañado" << endl;
 	}
 	archivoEstrategia.close();
 

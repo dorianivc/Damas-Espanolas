@@ -20,6 +20,7 @@ public:
 	void eliminar(int, int);
 	void vaciarTablero();
 	bool fichaExiste(int, int);
+	void reiniciar();
 	void crear(int, int, bool);
 	void actualizar();//refresca las fichas para coronarlas si llegaron al espacio correspondiente
 	string toString();

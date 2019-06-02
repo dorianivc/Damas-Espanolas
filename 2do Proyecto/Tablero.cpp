@@ -167,6 +167,54 @@ bool Tablero::fichaExiste(int x, int y)
 	}
 }
 
+void Tablero::reiniciar()
+{
+	vaciarTablero();
+	for (int i = 0; i < TAMTABLERO; i++)
+	{
+		for (int y = 0; y < TAMTABLERO; y++)
+		{
+			tablero[i][y] = NULL;
+		}
+	}
+
+	for (int i = 0; i < 3; i++) {
+		if (esPar(i + 1)) {
+			for (int y = 0; y < TAMTABLERO; y++) {
+				if (!esPar(y)) {
+					tablero[i][y] = new Ficha(true);
+				}
+
+			}
+		}
+		if (!esPar(i + 1)) {
+			for (int y = 0; y < TAMTABLERO; y++) {
+				if (esPar(y)) {
+					tablero[i][y] = new Ficha(true);
+				}
+			}
+		}
+	}
+
+	for (int i = 5; i < 8; i++) {
+		if (!esPar(i + 1)) {
+			for (int y = 0; y < TAMTABLERO; y++) {
+				if (esPar(y)) {
+					tablero[i][y] = new Ficha(false);
+				}
+
+			}
+		}
+		if (esPar(i + 1)) {
+			for (int y = 0; y < TAMTABLERO; y++) {
+				if (!esPar(y)) {
+					tablero[i][y] = new Ficha(false);
+				}
+			}
+		}
+	}
+}
+
 void Tablero::crear(int x, int y, bool z)
 {
 	tablero[x][y] = new Ficha(z);

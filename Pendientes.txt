@@ -1,1 +1,7 @@
 int getTipoEstrategia()//modificar
+permitir reiniciar la partida en cualquier momento(5pts)
+guardar el estado de la partida en cualquier momento(5pts)
+El programa verifica correctamente el fin de la partida
+El programa tiene una opción para permitir cambiar la estrategia a utilizar
+La interfaz del programa permite indicar cuál es la pieza a mover y su nueva posición 
+Conversion de datos de entrada(por como ve el jugador los numeros del tablero)

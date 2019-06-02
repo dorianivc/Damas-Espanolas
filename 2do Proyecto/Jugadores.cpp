@@ -30,6 +30,12 @@ void Jugadores::setCoronas(int x)
 	coronas = x;
 }
 
+void Jugadores::reiniciar()
+{
+	fichasRestantes = 12;
+	coronas = 0;
+}
+
 bool Jugadores::restarFicha()
 {
 	if (fichasRestantes > 0) {

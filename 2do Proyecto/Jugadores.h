@@ -17,6 +17,7 @@ public:
 	virtual int getFichasRestantes();
 	virtual void setFichasRestantes(int);
 	virtual void setCoronas(int);
+	virtual void reiniciar();
 	virtual bool restarFicha();
 	virtual int getCoronas();
 	virtual bool sumarCoronas();
