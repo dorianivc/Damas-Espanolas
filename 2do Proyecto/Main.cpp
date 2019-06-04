@@ -13,16 +13,16 @@ int main() {
 	cout << "Por favor ingrese su nombre " << endl;
 	getline(cin, nombre);
 	bool salidaMenuA = false;
+	Tablero* tab = Tablero::getInstancia();
+	Jugador* jugador = new Jugador(nombre);
+	Computadora* compu = new Computadora();
+	Juego* juegoPrincipal = new Juego(tab, jugador, compu);//seteado para ser aleatorio automaticamente
 	do {
 		cout << "Digite 1 para jugar" << endl;
 		cout << "Digite 2 para cambiar la estrategia de la computadora" << endl;
 		cout << "Digite 3 para cargar partida guardada" << endl;
 		cout << "Digite 4 para salir " << endl;
-		cout << "Por favor seleccione una opcion del menu" << endl;
-		Tablero* tab = Tablero::getInstancia();
-		Jugador* jugador = new Jugador(nombre);
-		Computadora* compu = new Computadora();
-		Juego* juegoPrincipal = new Juego(tab, jugador, compu);//seteado para ser aleatorio automaticamente
+		cout << "Por favor seleccione una opcion del menu" << endl;		
 		//AnalizadorArchivos::recuperar(juegoPrincipal);
 		getline(cin, menuA);
 		MenuA = atoi(menuA.c_str());

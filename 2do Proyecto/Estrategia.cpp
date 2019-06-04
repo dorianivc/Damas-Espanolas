@@ -211,6 +211,9 @@ vector<int> Estrategia::calcularJugadas(Tablero* tab, int x, int y)
 				}
 			}
 
+		/*	for (int i = 0; i < estrategia.size(); i++) {
+				cout <<"Posibles moviminetos pos #"<<i<<"  " <<estrategia[i] << endl;
+			}*/
 			return estrategia;
 		}
 		else {
