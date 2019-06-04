@@ -62,6 +62,9 @@ bool Juego::realizarJugadaPC()
 		//Hasta aqui, el vector contiene las coordenadas de la ficha a mover y su movimiento
 	int casX = jugadaObtenidaEstrategia[0]; int casY = jugadaObtenidaEstrategia[1];
 	int movX = jugadaObtenidaEstrategia[2]; int movY = jugadaObtenidaEstrategia[3]; int com = jugadaObtenidaEstrategia[4];
+	cout << "Ficha (" << casX << "," << casY << ")" << "movida a (" << movX << "," << movY << ")" << endl;
+	cout << "Resta de X: " << movX - casX << endl;
+	cout << "Resta de Y: " << movY - casY << endl;
 	if (jugadaValidaNegras(casX, casY, movX, movY, tab->getFichaDelTablero(jugadaObtenidaEstrategia[0], jugadaObtenidaEstrategia[1]))) {
 		if (tab->getFichaDelTablero(casX, casY)->getesCorona()) {
 			tab->eliminar(casX, casY);
@@ -76,12 +79,12 @@ bool Juego::realizarJugadaPC()
 			if (movX - casX == 2) {//si come hacia adelante;
 				//verificar si comio a la izquierda o a la derecha
 				if (movY - casY == 2) {//derecha
-					tab->eliminar((movX - 1), (movY + 1));
+					tab->eliminar((movX - 1), (movY - 1));
 					jugador->restarFicha();
 					cout << jugador->toString() << endl;
 				}
 				if (movY - casY == -2) {//izquierda
-					tab->eliminar((movX - 1), (movY - 1));
+					tab->eliminar((movX - 1), (movY + 1));
 					jugador->restarFicha();
 					cout << jugador->toString() << endl;
 				}
@@ -89,12 +92,12 @@ bool Juego::realizarJugadaPC()
 			if (movX - casX == -2) {
 				//verificar si comio a la izquierda o a la derecha
 				if (movY - casY == 2) {//derecha
-					tab->eliminar((movX + 1), (movY + 1));
+					tab->eliminar((movX + 1), (movY - 1));
 					jugador->restarFicha();
 					cout << jugador->toString() << endl;
 				}
 				if (movY - casY == -2) {//izquierda
-					tab->eliminar((movX + 1), (movY - 1));
+					tab->eliminar((movX + 1), (movY + 1));
 					jugador->restarFicha();
 					cout << jugador->toString() << endl;
 				}
@@ -384,10 +387,12 @@ void Juego::setEstrategia(int tipo)
 {
 	switch (tipo) {
 	default: 
+		delete estra;
 		estra = new EstrategiaAleatoria();
 		break;
 	case 2:
-		//estra= new EstategiaDefensiva();
+		delete estra;
+		estra = new EstrategiaDefensiva();
 		break;
 	case 3:
 		//estra= new EstrategiaOfensiva();

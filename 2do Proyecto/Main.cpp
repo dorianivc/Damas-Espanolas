@@ -6,6 +6,7 @@
 using namespace std;
 
 int main() {
+
 	string menuA, nombre;
 	int MenuA;
 	cout << "Bienvenido a Damas " << endl;
@@ -123,6 +124,29 @@ int main() {
 			cout << "Hasta luego" << endl;
 			salidaMenuA = true;
 			
+		}
+		else if (MenuA == 2) {
+			string eleccion;
+			int elec = 0;
+			cout << "Digite 1 para seleccionar la estrategia Aleatoria(FACIL)" << endl;
+			cout << "Digite 2 para seleccionar la estrategia Defensiva(Desafiante)" << endl;
+			cout << "Digite 3 para seleccionar la estrategia Ofensiva(Dificil)" << endl;
+			getline(cin, eleccion);
+			elec = atoi(eleccion.c_str());
+			if (elec == 1) {
+				juegoPrincipal->setEstrategia(1);
+				cout << "Estrategia seteada a: Aleatoria" << endl;
+			}
+			else if (elec == 2) {
+				juegoPrincipal->setEstrategia(2);
+				cout << "Estrategia seteada a: Defensiva" << endl;
+				cout << "------->" << juegoPrincipal->getEstrategia()->serializar() << endl;
+			}
+			else {
+				juegoPrincipal->setEstrategia(1);
+				cout << "Eleccion digitada no corresponde a una opcion del menu" << endl;
+				cout << "Estrategia automaticamente seateada a Aleatoria: " << endl;
+			}
 		}
 		cout << "Presione enter" << endl;
 		cin.get();

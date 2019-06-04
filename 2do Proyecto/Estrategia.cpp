@@ -2,11 +2,39 @@
 
 vector<int> Estrategia::obtenerPosicionAJugarAleatoria(Tablero* tab)
 {
-	int  x, y;
-	vector<int> vec;
+	int  y;
+	int cuenta = 0;
+	vector<int> vec, retorno;
 	srand(time(NULL));
 	bool pass = false;
-	while (pass != true) {
+	for (int i = 0; i < TAMTABLERO; i++) {
+		for (int y = 0; y < TAMTABLERO; y++) {
+			if (tab->getFichaDelTablero(i, y)!=NULL) {
+				if (tab->getFichaDelTablero(i, y)->esFichaNegra()) {
+					vector<int> jugadas = calcularJugadas(tab, i, y);
+
+					if (jugadas[0] > 0) {
+						vec.push_back(i);
+						vec.push_back(y);
+						vec.push_back(jugadas[0]);
+						cuenta++;
+					}
+				}
+			}
+		}
+	}
+	int v = 0 + rand() % (cuenta + 1 - 1);
+	int x=0, j=1, z=2;
+	for (int i = 0; i < v; i++) {
+		x = (3 * i);
+		j = (3 * i) + 1;
+		z = (3 * i)+2;
+	}
+	retorno.push_back(vec[x]);
+	retorno.push_back(vec[j]);
+	retorno.push_back(vec[z]);
+	return retorno;
+	/*while (pass != true) {
 		for (int i = 0; i < 3; i++) {
 			x = 0 + rand() % (7 + 1 - 0);
 		}
@@ -27,10 +55,9 @@ vector<int> Estrategia::obtenerPosicionAJugarAleatoria(Tablero* tab)
 				pass = false;
 			}
 		}
-	}
-	vec.push_back(x);
-	vec.push_back(y);
-	return vec;
+	}*/
+
+
 }
 
 vector<int> Estrategia::calcularJugadas(Tablero* tab, int x, int y)
@@ -193,5 +220,41 @@ vector<int> Estrategia::calcularJugadas(Tablero* tab, int x, int y)
 	}
 	catch (string p) {
 		cout << "Ha digitado una tecla de rango indefinido en la matriz" << endl;
+	}
+}
+
+vector<int> Estrategia::misFichas(Tablero* tab)
+{
+	vector<int> fichas;
+	for (int i = 0; i < TAMTABLERO; i++) {
+		for (int y = 0; y < TAMTABLERO; y++) {
+			if (tab->getFichaDelTablero(i, y) != NULL) {
+				if (tab->getFichaDelTablero(i, y)->esFichaNegra()) {
+					fichas.push_back(i);
+					fichas.push_back(y);
+				}
+			}
+		}
+	}
+	return fichas;
+}
+
+bool Estrategia::jugadaValida(int x1, int x2, int jugadaDefinitivaX, int jugadaDefinitivaY, Ficha* fic)
+{
+	if (fic->getesCorona() == false) {
+		if ((jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 + 1) || (jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 - 1) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 + 2) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 - 2)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		if ((jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 + 1) || (jugadaDefinitivaX == x1 + 1 && jugadaDefinitivaY == x2 - 1) || (jugadaDefinitivaX == x1 - 1 && jugadaDefinitivaY == x2 + 1) || (jugadaDefinitivaX == x1 - 1 && jugadaDefinitivaY == x2 - 1) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 + 2) || (jugadaDefinitivaX == x1 + 2 && jugadaDefinitivaY == x2 - 2) || (jugadaDefinitivaX == x1 - 2 && jugadaDefinitivaY == x2 + 2) || (jugadaDefinitivaX == x1 - 2 && jugadaDefinitivaY == x2 - 2)) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }

@@ -1,7 +1,15 @@
 int getTipoEstrategia()//modificar
-permitir reiniciar la partida en cualquier momento(5pts)
-guardar el estado de la partida en cualquier momento(5pts)
-El programa verifica correctamente el fin de la partida
-El programa tiene una opción para permitir cambiar la estrategia a utilizar
-La interfaz del programa permite indicar cuál es la pieza a mover y su nueva posición 
-Conversion de datos de entrada(por como ve el jugador los numeros del tablero)
+mejorar el algoritmo que me obtiene el aleatorio(
+Podria intentar hacer un vector que me almacene la cantidad de fichas y sus respectivas posiciones;
+luego hacer un random entre 1-numPosiciones, y colocarlo para sacar esa posicion del vector;
+Si la ficha tiene mas de una posibilidad de moverse, que la escoga y haga cualquier movimiento;
+)
+defensivo(
+verifico que todas las fichas mias esten sin riesgo;
+si existe al menos una ficha que no lo esté, entonces ponerse a buscar la ficha.
+Cuando la ficha
+)
+El programa verifica correctamente el fin de la partida----Se supone que lo hace quien tiene que verificarlo, soy yo
+El programa tiene una opción para permitir cambiar la estrategia a utilizar--Opcion en pantalla pero deshabilitada en el sistema
+La interfaz del programa permite indicar cuál es la pieza a mover y su nueva posición --Lo permite
+Conversion de datos de entrada(por como ve el jugador los numeros del tablero) -- metodo en clase juego una vez terminada las estrategias
