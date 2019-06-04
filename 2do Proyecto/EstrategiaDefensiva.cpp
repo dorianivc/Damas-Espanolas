@@ -19,17 +19,19 @@ vector<int> EstrategiaDefensiva::obtenerEstrategia(Tablero* tab)
 					h = (3 * j)+1;
 					k = (3 * j) +2;
 					z = (3 * j) + 3;
-					tab->crear(jugadasParaFicha[h], jugadasParaFicha[k], true);
-					if (posicionDePeligro(tab, jugadasParaFicha[h], jugadasParaFicha[k]) == false && jugadaValida(fichas[x], fichas[y], jugadasParaFicha[h], jugadasParaFicha[z], tab->getFichaDelTablero(fichas[x], fichas[y]))) {
-						posibles.push_back(fichas[x]);
-						posibles.push_back(fichas[y]);
-						posibles.push_back(jugadasParaFicha[h]);
-						posibles.push_back(jugadasParaFicha[k]);
-						posibles.push_back(jugadasParaFicha[z]);
-						tab->eliminar(jugadasParaFicha[h], jugadasParaFicha[k]);
-						return posibles;
+					//tab->crear(jugadasParaFicha[h], jugadasParaFicha[k], true);
+					if (posicionDePeligro(tab, jugadasParaFicha[h], jugadasParaFicha[k]) == false) {
+						//tab->eliminar(jugadasParaFicha[h], jugadasParaFicha[k]);
+						if (jugadaValida(fichas[x], fichas[y], jugadasParaFicha[h], jugadasParaFicha[k], tab->getFichaDelTablero(fichas[x], fichas[y]))) {
+							posibles.push_back(fichas[x]);
+							posibles.push_back(fichas[y]);
+							posibles.push_back(jugadasParaFicha[h]);
+							posibles.push_back(jugadasParaFicha[k]);
+							posibles.push_back(jugadasParaFicha[z]);
+							return posibles;
+						}
 					}
-					tab->eliminar(jugadasParaFicha[h], jugadasParaFicha[k]);
+					//tab->eliminar(jugadasParaFicha[h], jugadasParaFicha[k]);
 				}
 			}
 		}
@@ -38,15 +40,15 @@ vector<int> EstrategiaDefensiva::obtenerEstrategia(Tablero* tab)
 	for (int i = 0; i < ((fichas.size()) / 2); i++) {
 		x = (2 * i);
 		y = (2 * i) + 1;
-		/*cout << "X: " <<x<< "Ficha x:  " << fichas[x] << endl;
-		cout << "Y: " <<y<<"Ficha y:  "<<fichas[y] << endl;*/
+		cout << "X: " <<x<< "Ficha x:  " << fichas[x] << endl;
+		cout << "Y: " <<y<<"Ficha y:  "<<fichas[y] << endl;
 		vector<int> jugadasParaFicha = calcularJugadas(tab, fichas[x], fichas[y]);
 		for (int j = 0; j < jugadasParaFicha[0]; j++) {
 			h = (3 * j)+1;
 			k = (3 * j) + 2;
 			z = (3 * j) + 3;
 			tab->crear(jugadasParaFicha[h], jugadasParaFicha[k], true);
-			if (tab->getFichaDelTablero(jugadasParaFicha[h], jugadasParaFicha[k])->getesCorona()) {
+			if (tab->getFichaDelTablero(fichas[x], fichas[y])->getesCorona()) {
 				tab->getFichaDelTablero(jugadasParaFicha[h], jugadasParaFicha[k])->coronar();
 			}
 			if (!posicionDePeligro(tab, jugadasParaFicha[h], jugadasParaFicha[k])) {
@@ -317,32 +319,53 @@ vector<int> EstrategiaDefensiva::calculcarJugadas(Tablero* tab, int x, int y)
 
 bool EstrategiaDefensiva::posicionDePeligro(Tablero* tab, int x, int y)
 {
-	if (x > 0 && y > 0 && x < 8 && y < 8) {
+	if (x >= 0 && y >= 0 && x < 8 && y < 8) {
 		if (x < 7 && y>0) {
 			if (tab->getFichaDelTablero(x + 1, y - 1) != NULL) {
 				if (tab->getFichaDelTablero(x + 1, y - 1)->esFichaNegra() == false) {
-					return true;
+					if (y >0 &&x<7 && y >= 0) {
+						if (tab->getFichaDelTablero(x - 1, y + 1) == NULL) {
+							return true;
+						}
+
+					}
+					
 				}
 			}
 		}
 			if (x < 7 && y>0 && 7 > y) {
 				if (tab->getFichaDelTablero(x + 1, y + 1) != NULL) {
 					if (tab->getFichaDelTablero(x + 1, y + 1)->esFichaNegra() == false) {
-						return true;
+						if (x < 7 && y < 7&&y>=0) {
+							if (tab->getFichaDelTablero(x - 1, y - 1) == NULL) {
+								return true;
+							}
+						}
+						
 					}
 				}
 			}
 			if (x > 1 && y > 0) {
 				if (tab->getFichaDelTablero(x - 1, y - 1) != NULL) {
-					if (tab->getFichaDelTablero(x - 1, y - 1)->esFichaNegra() == false && tab->getFichaDelTablero(x + 1, y - 1)->getesCorona()) {
-						return true;
+					if (tab->getFichaDelTablero(x - 1, y - 1)->esFichaNegra() == false && tab->getFichaDelTablero(x - 1, y - 1)->getesCorona()) {
+						if (x < 7 && x > 0 && y > 0) {
+							if (tab->getFichaDelTablero(x + 1, y + 1) == NULL) {
+								return true;
+							}
+						}
+						
 					}
 				}
 			}
 			if (x > 1 && y < 7) {
 				if (tab->getFichaDelTablero(x - 1, y + 1) != NULL) {
-					if (tab->getFichaDelTablero(x - 1, y + 1)->esFichaNegra() == false && tab->getFichaDelTablero(x + 1, y + 1)->getesCorona()) {
-						return true;
+					if (tab->getFichaDelTablero(x - 1, y + 1)->esFichaNegra() == false && tab->getFichaDelTablero(x - 1, y + 1)->getesCorona()) {
+						if (x<7&&x > 0 && y < 7) {
+							if (tab->getFichaDelTablero(x + 1, y - 1) == NULL) {
+								return true;
+							}
+						}
+						
 					}
 				}
 			}
