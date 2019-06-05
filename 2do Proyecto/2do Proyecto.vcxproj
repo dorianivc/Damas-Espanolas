@@ -120,6 +120,7 @@
     <ClInclude Include="Estrategia.h" />
     <ClInclude Include="EstrategiaAleatoria.h" />
     <ClInclude Include="EstrategiaDefensiva.h" />
+    <ClInclude Include="EstrategiaOfensiva.h" />
     <ClInclude Include="Ficha.h" />
     <ClInclude Include="Juego.h" />
     <ClInclude Include="Jugador.h" />
@@ -133,6 +134,7 @@
     <ClCompile Include="Estrategia.cpp" />
     <ClCompile Include="EstrategiaAleatoria.cpp" />
     <ClCompile Include="EstrategiaDefensiva.cpp" />
+    <ClCompile Include="EstrategiaOfensiva.cpp" />
     <ClCompile Include="Ficha.cpp" />
     <ClCompile Include="Juego.cpp" />
     <ClCompile Include="Jugador.cpp" />

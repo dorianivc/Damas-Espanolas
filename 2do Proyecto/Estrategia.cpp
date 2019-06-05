@@ -261,3 +261,61 @@ bool Estrategia::jugadaValida(int x1, int x2, int jugadaDefinitivaX, int jugadaD
 		}
 	}
 }
+
+bool Estrategia::posicionDePeligro(Tablero* tab, int x, int y)
+{
+	if (x >= 0 && y >= 0 && x < 8 && y < 8) {
+		if (x < 7 && y>0) {
+			if (tab->getFichaDelTablero(x + 1, y - 1) != NULL) {
+				if (tab->getFichaDelTablero(x + 1, y - 1)->esFichaNegra() == false) {
+					if (y > 0 && x < 7 && y >= 0) {
+						if (tab->getFichaDelTablero(x - 1, y + 1) == NULL) {
+							return true;
+						}
+
+					}
+
+				}
+			}
+		}
+		if (x < 7 && y>0 && 7 > y) {
+			if (tab->getFichaDelTablero(x + 1, y + 1) != NULL) {
+				if (tab->getFichaDelTablero(x + 1, y + 1)->esFichaNegra() == false) {
+					if (x < 7 && y < 7 && y >= 0) {
+						if (tab->getFichaDelTablero(x - 1, y - 1) == NULL) {
+							return true;
+						}
+					}
+
+				}
+			}
+		}
+		if (x > 1 && y > 0) {
+			if (tab->getFichaDelTablero(x - 1, y - 1) != NULL) {
+				if (tab->getFichaDelTablero(x - 1, y - 1)->esFichaNegra() == false && tab->getFichaDelTablero(x - 1, y - 1)->getesCorona()) {
+					if (x < 7 && x > 0 && y > 0) {
+						if (tab->getFichaDelTablero(x + 1, y + 1) == NULL) {
+							return true;
+						}
+					}
+
+				}
+			}
+		}
+		if (x > 1 && y < 7) {
+			if (tab->getFichaDelTablero(x - 1, y + 1) != NULL) {
+				if (tab->getFichaDelTablero(x - 1, y + 1)->esFichaNegra() == false && tab->getFichaDelTablero(x - 1, y + 1)->getesCorona()) {
+					if (x < 7 && x > 0 && y < 7) {
+						if (tab->getFichaDelTablero(x + 1, y - 1) == NULL) {
+							return true;
+						}
+					}
+
+				}
+			}
+		}
+		return false;
+
+
+	}
+}

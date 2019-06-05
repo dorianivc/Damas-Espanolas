@@ -4,6 +4,7 @@
 #include "Computadora.h"
 #include "EstrategiaAleatoria.h"
 #include "EstrategiaDefensiva.h"
+#include "EstrategiaOfensiva.h"
 using namespace std;
 class Juego
 {

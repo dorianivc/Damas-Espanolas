@@ -140,7 +140,12 @@ int main() {
 			else if (elec == 2) {
 				juegoPrincipal->setEstrategia(2);
 				cout << "Estrategia seteada a: Defensiva" << endl;
-				cout << "------->" << juegoPrincipal->getEstrategia()->serializar() << endl;
+				cout << juegoPrincipal->getEstrategia()->serializar() << endl;
+			}
+			else if (elec == 3) {
+				juegoPrincipal->setEstrategia(3);
+				cout << "Estrategia seteada a: Ofensiva" << endl;
+				cout << juegoPrincipal->getEstrategia()->serializar() << endl;
 			}
 			else {
 				juegoPrincipal->setEstrategia(1);

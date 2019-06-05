@@ -7,7 +7,7 @@ public:
 	vector<int> obtenerEstrategia(Tablero*);
 	string serializar();
 	vector<int> calculcarJugadas(Tablero*, int, int);
-	bool posicionDePeligro(Tablero*, int, int);// verifica si en esa casilla, se es vulnerable
+	//bool posicionDePeligro(Tablero*, int, int);// Metodo heredado
 
 };
 #endif

@@ -395,7 +395,7 @@ void Juego::setEstrategia(int tipo)
 		estra = new EstrategiaDefensiva();
 		break;
 	case 3:
-		//estra= new EstrategiaOfensiva();
+		estra= new EstrategiaOfensiva();
 		break;
 	}
 }

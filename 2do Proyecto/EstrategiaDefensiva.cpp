@@ -316,8 +316,7 @@ vector<int> EstrategiaDefensiva::calculcarJugadas(Tablero* tab, int x, int y)
 		cout << "Ha digitado una tecla de rango indefinido en la matriz" << endl;
 	}
 }
-
-bool EstrategiaDefensiva::posicionDePeligro(Tablero* tab, int x, int y)
+/*bool EstrategiaDefensiva::posicionDePeligro(Tablero* tab, int x, int y)
 {
 	if (x >= 0 && y >= 0 && x < 8 && y < 8) {
 		if (x < 7 && y>0) {
@@ -374,3 +373,4 @@ bool EstrategiaDefensiva::posicionDePeligro(Tablero* tab, int x, int y)
 		
 	}
 }
+*/

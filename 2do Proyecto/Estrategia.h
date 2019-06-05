@@ -18,6 +18,7 @@ public:
 	virtual vector<int> misFichas(Tablero*);//retorna una vector con todas las fichasNegras
 	virtual bool jugadaValida(int, int, int, int, Ficha*);
 	virtual string serializar() = 0;
+	virtual bool posicionDePeligro(Tablero*, int, int);// verifica si en esa casilla, se es vulnerable
 };
 
 #endif // !ESTRATEGIA
