@@ -253,4 +253,5 @@ string Jugador::serializar()
 
 Jugador::~Jugador()
 {
+
 }

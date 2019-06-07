@@ -100,7 +100,7 @@ int main() {
 						} while (jugoJugador != true);
 						do {
 							
-							cout << "Pensando" << endl;
+							cout << "Computadora Pensando" << endl;
 							jugoPC = juegoPrincipal->realizarJugadaPC();
 							cout << tab->toString() << endl;
 							cout << "Jugada de la computadora realizada, presione enter" << endl;
@@ -163,9 +163,12 @@ int main() {
 				cout << "Estrategia automaticamente seateada a Aleatoria: " << endl;
 			}
 		}
-		cin.get();
 		cout << "Presione enter" << endl;
+		cin.get();
+		
 	} while (salidaMenuA!=true);
+	
+	
 	return 0;
 
 }

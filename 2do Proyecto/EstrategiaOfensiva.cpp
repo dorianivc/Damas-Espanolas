@@ -11,9 +11,9 @@ vector<int> EstrategiaOfensiva::obtenerEstrategia(Tablero* tab)
 		x = (2 * i);
 		y = (2 * i) + 1;
 		if (posicionDePeligro(tab, fichas[x], fichas[y]) == true) {
-			cout << "Ficha en peligro" << endl;
+			/*cout << "Ficha en peligro" << endl;
 			cout << "(" << valorCoordenadaSalida(fichas[x]) << "," << fichas[y]+1 << ")" << endl;
-			cin.get();
+			cin.get();*/
 			vector<int> jugadasParaFicha = calcularJugadas(tab, fichas[x], fichas[y]);
 			if (jugadasParaFicha.size() > 0) {
 				for (int j = 0; j < jugadasParaFicha[0]; j++) {
@@ -58,14 +58,14 @@ vector<int> EstrategiaOfensiva::obtenerEstrategia(Tablero* tab)
 				h = jugadasPosibles[indiceH];
 				k = jugadasPosibles[indiceK];
 				z = jugadasPosibles[indiceZ];
-				cout << "Ficha: " << "(" << valorCoordenadaSalida(x) << "," << y+1 << ")" << " puede moverse a : " << "(" << valorCoordenadaSalida(h) << "," << k+1 << ")" << endl;
+				/*cout << "Ficha: " << "(" << valorCoordenadaSalida(x) << "," << y+1 << ")" << " puede moverse a : " << "(" << valorCoordenadaSalida(h) << "," << k+1 << ")" << endl;
 				if (z > 0) {
 					cout << "Si come" << endl;
 				}
 				else {
 					cout << "No come" << endl;
 				}
-				cout <<"Estatus de Peligro: "<< posicionDePeligro(tab, h, k) << endl;
+				cout <<"Estatus de Peligro: "<< posicionDePeligro(tab, h, k) << endl;*/
 				if (jugadaValida(x, y, h, k, tab->getFichaDelTablero(x, y))&&!posicionDePeligro(tab,h,k)) {
 					if (z > 0) {
 						come = true;
@@ -126,12 +126,12 @@ vector<int> EstrategiaOfensiva::obtenerEstrategia(Tablero* tab)
 			retorno.push_back(posibles[var3]);
 			retorno.push_back(posibles[var4]);
 			retorno.push_back(posibles[var5]);
-			cout << "Usando Estrategia Defensiva" << endl;
+			//cout << "Usando Estrategia Defensiva" << endl;
 			cin.get();
 			return retorno;
 		}
 		else {//PASAMOS A LA ESTRATEGIA ALEATORIA
-			cout << "Usando Estrategia Random" << endl;
+			//cout << "Usando Estrategia Random" << endl;
 			cin.get();
 			vector<int>jugada;
 			vector<int>salida;

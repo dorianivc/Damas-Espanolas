@@ -1,0 +1,24 @@
+Estrategia Aleatorio{
+1- Recorre todo el tablero para recolectar la posicion de cada ficha de la computadora
+2- Calcula los posibles movimientos validos de la ficha
+3- Genera un numero aleatorio donde su limite superior son la cantidad de movimientos posibles, y el limite inferior 1
+4- Retorna un vector de 4 posiciones con la posicion al azar a moverse
+}
+
+Estrategia Defensiva{
+1- Recorre todo el tablero para recolectar la posicion de cada ficha de la computadora
+2- Calcula los posibles movimientos validos de la ficha
+3- Toma todos los posibles movimientos validos, y los filtra para que no deje a la ficha en una posicion insegura
+4- Si ninguna ficha de todo el tablero no se puede mover a una posicion segura, entonces procedemos utilizando el algoritmo de generacion de movimientos aleatorios
+5- Si genera una ficha con al menos 1 movimiento SEGURO posible, entonces retorna ese movimiento
+}
+
+Estrategia Ofensiva{
+1- Recorre todo el tablero para recolectar la posicion de cada ficha de la computadora
+2- Calcula los posibles movimientos validos de la ficha
+3- Selecciona una ficha a mover si la ficha es capaz de comer con algun movimiento.
+4- Valida si realizando esos movimientos queda la ficha en una posicion vulnerable
+5- Si con el movimiento la ficha come, y no queda en peligro, retorna ese movimiento.
+6-Si ninguna ficha puede comer, implementa el algoritmo defensivo.
+7- En caso que el algoritmo defensivo no arroje alguna posibilidad entonces, se implementa el algoritmo aleatorio.
+}

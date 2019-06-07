@@ -62,7 +62,7 @@ bool Juego::realizarJugadaPC()
 		//Hasta aqui, el vector contiene las coordenadas de la ficha a mover y su movimiento
 	int casX = jugadaObtenidaEstrategia[0]; int casY = jugadaObtenidaEstrategia[1];
 	int movX = jugadaObtenidaEstrategia[2]; int movY = jugadaObtenidaEstrategia[3]; int com = jugadaObtenidaEstrategia[4];
-	cout << "Ficha (" << valorCoordenadaEntrada(casX) << "," << casY+1 << ")" << "movida a (" << valorCoordenadaSalida(movX) << "," << movY+1 << ")" << endl;
+	cout << "Ficha (" << valorCoordenadaSalida(casX) << "," << casY+1 << ")" << "movida a (" << valorCoordenadaSalida(movX) << "," << movY+1 << ")" << endl;
 	cout << "Resta de X: " << movX - casX << endl;
 	cout << "Resta de Y: " << movY - casY << endl;
 	if (jugadaValidaNegras(casX, casY, movX, movY, tab->getFichaDelTablero(jugadaObtenidaEstrategia[0], jugadaObtenidaEstrategia[1]))) {
@@ -485,6 +485,4 @@ bool Juego::ganoBlancas()
 Juego::~Juego()
 {
 	delete estra;
-	delete jugador;
-	delete compu;
 }
