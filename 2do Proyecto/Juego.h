@@ -18,6 +18,8 @@ public:
 	bool jugadaValidaBlancas(int, int, int, int, Ficha*);
 	bool jugadaValidaNegras(int, int, int, int, Ficha*);
 	bool realizarJugadaPC();
+	int valorCoordenadaEntrada(int);
+	int valorCoordenadaSalida(int);
 	Estrategia* getEstrategia();
 	void setEstrategia(Estrategia*);
 	Tablero* getTablero();

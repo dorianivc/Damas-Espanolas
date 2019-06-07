@@ -10,6 +10,7 @@ Computadora::Computadora(int fichasRestantes, int coronas):Jugadores(fichasResta
 
 string Computadora::toString()
 {
+	
 	stringstream p;
 	p << "Computadora:  " << endl;
 	p << "Coronas: " << coronas << endl;

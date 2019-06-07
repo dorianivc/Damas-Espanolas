@@ -131,7 +131,16 @@ void AnalizadorArchivos::recuperar(Juego* juego)
 			getline(archivoEstrategia, eleccion, '\t');
 			elec = atoi(eleccion.c_str());
 			if (elec == 1) {
-				juego->setEstrategia(new EstrategiaAleatoria());
+				juego->setEstrategia(1);
+			}
+			else if (elec == 2) {
+				juego->setEstrategia(2);
+			}
+			else if (elec == 3) {
+				juego->setEstrategia(3);
+			}
+			else {
+				juego->setEstrategia(1);
 			}
 		}
 		cout << "Estrategia Cargada" << endl;

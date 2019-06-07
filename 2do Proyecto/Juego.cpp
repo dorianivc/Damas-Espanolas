@@ -62,7 +62,7 @@ bool Juego::realizarJugadaPC()
 		//Hasta aqui, el vector contiene las coordenadas de la ficha a mover y su movimiento
 	int casX = jugadaObtenidaEstrategia[0]; int casY = jugadaObtenidaEstrategia[1];
 	int movX = jugadaObtenidaEstrategia[2]; int movY = jugadaObtenidaEstrategia[3]; int com = jugadaObtenidaEstrategia[4];
-	cout << "Ficha (" << casX << "," << casY << ")" << "movida a (" << movX << "," << movY << ")" << endl;
+	cout << "Ficha (" << valorCoordenadaEntrada(casX) << "," << casY+1 << ")" << "movida a (" << valorCoordenadaSalida(movX) << "," << movY+1 << ")" << endl;
 	cout << "Resta de X: " << movX - casX << endl;
 	cout << "Resta de Y: " << movY - casY << endl;
 	if (jugadaValidaNegras(casX, casY, movX, movY, tab->getFichaDelTablero(jugadaObtenidaEstrategia[0], jugadaObtenidaEstrategia[1]))) {
@@ -112,6 +112,52 @@ bool Juego::realizarJugadaPC()
 	return true;
 }
 
+int Juego::valorCoordenadaEntrada(int x)
+{
+	switch (x) {
+	case 1: return 7;
+		break;
+	case 2: return 6;
+		break;
+	case 3: return 5;
+		break;
+	case 4: return 4;
+		break;
+	case 5: return 3;
+		break;
+	case 6: return 2;
+		break;
+	case 7: return 1;
+		break;
+	case 8: return 0;
+		break;
+	}
+	return x;
+}
+int Juego::valorCoordenadaSalida(int x)
+{
+	switch (x) {
+	case 0:
+		return 8;
+		break;
+	case 1:
+		return 7;
+		break;
+	case 2: return 6; 
+		break;
+	case 3: return 5;
+		break;
+	case 4: return 4;
+		break;
+	case 5: return 3;
+		break;
+	case 6: return 2;
+		break;
+	case 7: return 1;
+		break;
+	}
+	return x;
+}
 Estrategia* Juego::getEstrategia()
 {
 	return estra;
@@ -139,7 +185,9 @@ Computadora* Juego::getComputadora()
 
 int Juego::getTipoEstrategia()
 {
-	return 1;//MODIFICAR
+	string k=estra->serializar();
+	int p = atoi(k.c_str());
+	return p;
 }
 
 bool Juego::realizarJugadaJugador()
@@ -153,6 +201,8 @@ bool Juego::realizarJugadaJugador()
 	getline(cin, aux2);
 	x1 = atoi(aux1.c_str());
 	x2 = atoi(aux2.c_str());
+	x1 = valorCoordenadaEntrada(x1);
+	x2--;
 	//bool pass = false;
 	vector<int> salida;//Con este vector se imprimen las opciones
 	if (x1 >= 0 && x1 < 8 && x2 >= 0 && x2 < 8) {
@@ -209,8 +259,8 @@ bool Juego::realizarJugadaJugador()
 							cout << (3*i)+1 << " Aqui el (3*i)+1" << endl;
 							cout << (3*i)+2 << " Aqui el (3*i)+2" << endl;
 							cout << (3*i)+3 << " Aqui el (3*i)+3" << endl;*/
-							cout << "Fila : " << jugada[(3*i)+1] << endl;
-							cout << "Columna: " << jugada[(i*3)+2] << endl;
+							cout << "Fila : " << valorCoordenadaSalida(jugada[(3*i)+1]) << endl;
+							cout << "Columna: " << jugada[(i*3)+2]+1 << endl;
 							cout << "Come con la jugada: ";
 							if (jugada[(i*3)+3] > 0) {
 									cout << " SI" << endl;
@@ -229,9 +279,11 @@ bool Juego::realizarJugadaJugador()
 						cout << "Digite la fila a mover" << endl;
 						getline(cin, jugadaX);
 						jugadaDefinitivaX = atoi(jugadaX.c_str());
+						jugadaDefinitivaX = valorCoordenadaEntrada(jugadaDefinitivaX);
 						cout << "Digite la columna a mover" << endl;
 						getline(cin, jugadaY);
 						jugadaDefinitivaY = atoi(jugadaY.c_str());
+						jugadaDefinitivaY--;
 						bool pass = true;
 						if(jugadaValidaBlancas(x1,x2,jugadaDefinitivaX, jugadaDefinitivaY, tab->getFichaDelTablero(x1,x2))) {
 						

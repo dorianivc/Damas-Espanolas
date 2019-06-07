@@ -12,7 +12,7 @@ vector<int> EstrategiaOfensiva::obtenerEstrategia(Tablero* tab)
 		y = (2 * i) + 1;
 		if (posicionDePeligro(tab, fichas[x], fichas[y]) == true) {
 			cout << "Ficha en peligro" << endl;
-			cout << "(" << fichas[x] << "," << fichas[y] << ")" << endl;
+			cout << "(" << valorCoordenadaSalida(fichas[x]) << "," << fichas[y]+1 << ")" << endl;
 			cin.get();
 			vector<int> jugadasParaFicha = calcularJugadas(tab, fichas[x], fichas[y]);
 			if (jugadasParaFicha.size() > 0) {
@@ -58,7 +58,7 @@ vector<int> EstrategiaOfensiva::obtenerEstrategia(Tablero* tab)
 				h = jugadasPosibles[indiceH];
 				k = jugadasPosibles[indiceK];
 				z = jugadasPosibles[indiceZ];
-				cout << "Ficha: " << "(" << x << "," << y << ")" << " movida a : " << "(" << h << "," << k << ")" << endl;
+				cout << "Ficha: " << "(" << valorCoordenadaSalida(x) << "," << y+1 << ")" << " puede moverse a : " << "(" << valorCoordenadaSalida(h) << "," << k+1 << ")" << endl;
 				if (z > 0) {
 					cout << "Si come" << endl;
 				}

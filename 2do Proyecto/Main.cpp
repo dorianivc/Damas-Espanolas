@@ -18,6 +18,8 @@ int main() {
 	Computadora* compu = new Computadora();
 	Juego* juegoPrincipal = new Juego(tab, jugador, compu);//seteado para ser aleatorio automaticamente
 	do {
+		system("cls");
+		cout << "Juego De Damas" << endl;
 		cout << "Digite 1 para jugar" << endl;
 		cout << "Digite 2 para cambiar la estrategia de la computadora" << endl;
 		cout << "Digite 3 para cargar partida guardada" << endl;
@@ -49,6 +51,7 @@ int main() {
 				else if (aux == 2) {
 					AnalizadorArchivos::guardar(juegoPrincipal);
 					cout << "Patida guardada" << endl;
+					cout << "Presione Enter" << endl;
 					cin.get();
 				}
 				else if (aux == 3) {
@@ -56,11 +59,15 @@ int main() {
 					jugador->reiniciar();
 					compu->reiniciar();
 					cout << "Partida Reiniciada" << endl;
+					cout << "Presione Enter" << endl;
 				}
 				else {
 					system("cls");
 				}
 				if (salir) {
+					tab->reiniciar();
+					jugador->reiniciar();
+					compu->reiniciar();
 					cout << "Listo" << endl;
 					system("cls");
 					salir = true;
@@ -105,6 +112,9 @@ int main() {
 						cout << "Partida Finalizada" << endl;
 						cout << compu->toString() << endl;
 						cout << jugador->toString() << endl;
+						tab->reiniciar();
+						jugador->reiniciar();
+						compu->reiniciar();
 						salir = true;
 					}
 				}
@@ -153,8 +163,8 @@ int main() {
 				cout << "Estrategia automaticamente seateada a Aleatoria: " << endl;
 			}
 		}
-		cout << "Presione enter" << endl;
 		cin.get();
+		cout << "Presione enter" << endl;
 	} while (salidaMenuA!=true);
 	return 0;
 

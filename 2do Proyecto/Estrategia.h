@@ -11,7 +11,8 @@ using namespace std;
 class Estrategia
 {
 public:
-
+	virtual int valorCoordenadaEntrada(int);
+	virtual int valorCoordenadaSalida(int x);
 	virtual vector<int> obtenerEstrategia(Tablero*) = 0;
 	virtual vector<int> obtenerPosicionAJugarAleatoria(Tablero*);
 	virtual vector<int> calcularJugadas(Tablero* tab, int x, int y);//CALCULA LA JUGADA EN LA POSICION DE LA FICHA INGRESADA

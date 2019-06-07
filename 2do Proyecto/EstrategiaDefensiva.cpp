@@ -11,7 +11,7 @@ vector<int> EstrategiaDefensiva::obtenerEstrategia(Tablero* tab)
 		y = (2 * i) + 1;
 		if (posicionDePeligro(tab, fichas[x], fichas[y])==true) {
 			cout << "Ficha en peligro" << endl;
-			cout << "(" << fichas[x] << "," << fichas[y] << ")" << endl;
+			cout << "(" << valorCoordenadaSalida(fichas[x]) << "," << fichas[y]+1 << ")" << endl;
 			cin.get();
 			vector<int> jugadasParaFicha = calcularJugadas(tab, fichas[x], fichas[y]);
 			if (jugadasParaFicha.size() > 0) {
@@ -40,8 +40,8 @@ vector<int> EstrategiaDefensiva::obtenerEstrategia(Tablero* tab)
 	for (int i = 0; i < ((fichas.size()) / 2); i++) {
 		x = (2 * i);
 		y = (2 * i) + 1;
-		cout << "X: " <<x<< "Ficha x:  " << fichas[x] << endl;
-		cout << "Y: " <<y<<"Ficha y:  "<<fichas[y] << endl;
+		cout << "X: " <<x<< "Ficha x:  " << valorCoordenadaSalida( fichas[x]) << endl;
+		cout << "Y: " <<y<<"Ficha y:  "<< fichas[y]+1 << endl;
 		vector<int> jugadasParaFicha = calcularJugadas(tab, fichas[x], fichas[y]);
 		for (int j = 0; j < jugadasParaFicha[0]; j++) {
 			h = (3 * j)+1;
