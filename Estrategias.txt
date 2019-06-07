@@ -1,3 +1,4 @@
+DORIAN VALLECILLO CALDERON
 Estrategia Aleatorio{
 1- Recorre todo el tablero para recolectar la posicion de cada ficha de la computadora
 2- Calcula los posibles movimientos validos de la ficha

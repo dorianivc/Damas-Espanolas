@@ -6,7 +6,13 @@
 using namespace std;
 
 int main() {
-
+	/*
+	Universidad Nacional
+	Proyecto Realizado Por: Dorian Vallecillo Calderon
+	Profesora: Karol Leiton
+	Curso: Programacion II
+	IC 2019
+	*/
 	string menuA, nombre;
 	int MenuA;
 	cout << "Bienvenido a Damas " << endl;
